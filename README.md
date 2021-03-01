@@ -6,11 +6,11 @@
 
 ## FAILURE TO FILL OUT THE INFORMATION BELOW CORRECTLY WILL CAUSE POINTS TO BE DEDUCTED FROM YOUR ASSIGNMENT.
 
-## Student Name  : Name here
+## Student Name  : Gineton Alencar
 
-## Student ID    : ID here
+## Student ID    : 920098605
 
-## Student Email : Email here
+## Student Email : galencar@mail.sfsu.edu
 
 ## Purpose of Repository
 
