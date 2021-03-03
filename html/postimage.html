@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+❖ postimage.html – for registered users to post images 
+    o Must have document title
+    o Must have a section heading introducing the form 
+    o Input fields are REQUIRED to be in form tags.
+    o Must ask user to input a post Title
+    o Must ask user to input a post Description
+    o Must ask user to input an image (or images, this is your choice)
+    o Must ask user to accept Acceptable Use Policy for uploading images. 
+    o Must ask user to submit image post via a button.
+-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +18,27 @@
     <title>Post an Image</title>
 </head>
 <body>
-    
+    <h1>Post an Image</h1>
+    <form>
+        <div>
+            <label for="post-title-input">Image Title:</label>
+            <input type="text" name="post-title-input" id="post-title-input"/>
+        </div>
+        <div>
+            <label for="post-description-input">Image Description:</label>
+            <input type="text" name="post-description-input" id="post-description-input"/>
+        </div>
+        <div>
+            <label for="image-input">Upload an Image:</label>
+            <input type="image" name="image-input" id="image-input" required/>
+        </div>
+        <div>
+            <label for="use-policy-check">Do you agree to the <a href="fake-AUP.sfsu.edu">Acceptable Use Policy</a>?</label>
+            <input type="checkbox" id="use-policy-check" name="use-policy-check" required/>
+        </div>
+        <div>
+            <input type="submit" id="submit-image" value="Post Image" required/>
+        </div>
+    </form>
 </body>
 </html>
