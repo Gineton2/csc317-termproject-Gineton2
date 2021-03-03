@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!--
+registration.html – for guests to register accounts
+    o Must have a document title
+    o Must have a section heading introducing the form 
+    o Input fields are REQUIRED to be in form tags.
+    o Must ask user to input a username
+    o Must ask user to input an email.
+    o Must ask user to input a password
+        ▪ Password input must be correct input type (i.e. when I type I should not see the
+    password)
+    o Must ask user to input a confirm password
+        ▪ Password input must be correct input type (i.e. when I type I should not see the password)
+    o Must ask user to accept they are 13+ years of age. 
+    o Must ask users to accept TOS and Privacy rules
+        ▪ Simply make a link that goes nowhere, but the text says TOS and Privacy Rules. 
+    o Must have the user click a submit button to submit registration form.
+ -->
+ <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
 </head>
 <body>
-    
+    <h1>New User Registration:</h1> <!--Is it better to use a legend tag here?-->
+    <form id="registration">
+        <div>
+            <label for="username-registration">Username:</label>
+            <input type="text" id="username-registration" name="username-registration" required minlength="2"/>
+        </div>
+        <div>
+            <label for="password-registration">Password:</label>
+            <input type="password" id="password-registration" name="password-registration" required minlength="8"/>
+        </div>
+        <div>
+            <label for="password-registration-confirmation">Confirm Password:</label>
+            <input type="password" id="password-registration-confirmation" name="password-registration-confirmation" required minlength="8"/>
+        </div>
+        <div>
+            <label for="age-check">Are you 13 years of age or older?</label>
+            <input type="checkbox" id="age-check" name="age-check" required/>
+        </div>
+        <div>
+            <label for="TOS-check">Do you agree to the Terms of Service and Privacy Rules?</label>
+            <input type="checkbox" id="TOS-check" name="TOS-check" required/>
+        </div>
+        <div>
+            <input type="submit" id="submit-registration" value="Register" required/>
+        </div>
+    </form>
 </body>
 </html>
