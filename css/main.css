@@ -7,30 +7,38 @@ green_yellow: #afb59f
 yellow: #78927a
 */
 body {
+
   /* height: 100%; */
   /* width: 100%; */
   /* box-sizing: border-box; */
-  display: flex;
+ 
   font-family: sans-serif;
   /* align-items: flex-start; */
   /* justify-content: center; */
   flex-direction: column;
   flex-basis: auto;
   align-self: center;
-  width: 400px;
   background-color: #f1f7f5;
+  text-align: center;
 }
+
 
 body:first-child {
   align-self: stretch;
   align-content: center;
 }
+.box {
+  width: 400px;
+  align-items: center;
+}
+
 h1 {
   font-family: "Poiret One", cursive;
 }
 
 @media (min-width: 768px) {
-  body {
+  .box {
     flex-direction: row;
+    text-align: left;
   }
 }
