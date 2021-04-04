@@ -1,12 +1,21 @@
-var x;
+let x;
+x = 5;
+
+if (y == 6) {
+    console.log('I misunderstood js scopes and hoisting.');
+} else {
+    console.log('This will print because \
+    y is undefined.');
+}
+
 if (x == 5) {
     console.log('x is 5');
-    let y = 6;
+    var y = 6;
 }
 
 if (y == 6) {
-    console.log('I misunderstood js scopes.');
+    console.log('I understood js scopes and hoisting.');
 } else {
-    console.log('This won\'t print either because \
-    y is undefined, which throws an error.');
+    console.log('This will not print because \
+    y is 6. Unless someone changed the non-const...');
 }
