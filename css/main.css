@@ -1,23 +1,33 @@
-/*/ red_color: #c7749f
-blue color: #74dde4
-white: #f1f7f5
-black: #030303
-green: #78927a
-green_yellow: #afb59f
-yellow: #78927a
-*/
+:root {
+  /* colors */
+  --light-red: #c7749f;
+  --red: #eb2c5f;
+  --dark-blue: #09165c;
+  --light-blue: #74dde4;
+  --whitish: #f1f7f5;
+  --black: #030303;
+  --gray-green: #78927a;
+  --gray-green-yellow: #afb59f;
+}
+
 body {
+<<<<<<< Updated upstream
 
   /* height: 100%; */
   /* width: 100%; */
+=======
+  height: 100%;
+  width: 100%;
+>>>>>>> Stashed changes
   /* box-sizing: border-box; */
  
   font-family: sans-serif;
   /* align-items: flex-start; */
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: column;
   flex-basis: auto;
   align-self: center;
+<<<<<<< Updated upstream
   background-color: #f1f7f5;
   text-align: center;
 }
@@ -31,14 +41,44 @@ body:first-child {
   width: 400px;
   align-items: center;
 }
+=======
+  width: 400px;
+  background-color: var(--dark-blue);
+}
+
+body {
+  align-self: stretch;
+  align-content: center;
+}
+>>>>>>> Stashed changes
 
 h1 {
   font-family: "Poiret One", cursive;
+  color: var(--light-blue);
+}
+
+h2 {
+  font-family: "Poiret One", cursive;
+  color: var(--light-blue);
+}
+
+p {
+  color: var(--whitish);
 }
 
 @media (min-width: 768px) {
   .box {
     flex-direction: row;
+<<<<<<< Updated upstream
     text-align: left;
+=======
+    width: 768px;
+>>>>>>> Stashed changes
   }
+}
+
+.posted-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
