@@ -11,14 +11,8 @@
 }
 
 body {
-<<<<<<< Updated upstream
-
   /* height: 100%; */
   /* width: 100%; */
-=======
-  height: 100%;
-  width: 100%;
->>>>>>> Stashed changes
   /* box-sizing: border-box; */
  
   font-family: sans-serif;
@@ -27,21 +21,6 @@ body {
   flex-direction: column;
   flex-basis: auto;
   align-self: center;
-<<<<<<< Updated upstream
-  background-color: #f1f7f5;
-  text-align: center;
-}
-
-
-body:first-child {
-  align-self: stretch;
-  align-content: center;
-}
-.box {
-  width: 400px;
-  align-items: center;
-}
-=======
   width: 400px;
   background-color: var(--dark-blue);
 }
@@ -50,7 +29,6 @@ body {
   align-self: stretch;
   align-content: center;
 }
->>>>>>> Stashed changes
 
 h1 {
   font-family: "Poiret One", cursive;
@@ -67,14 +45,8 @@ p {
 }
 
 @media (min-width: 768px) {
-  .box {
     flex-direction: row;
-<<<<<<< Updated upstream
-    text-align: left;
-=======
     width: 768px;
->>>>>>> Stashed changes
-  }
 }
 
 .posted-image {
