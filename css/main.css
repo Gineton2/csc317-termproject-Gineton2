@@ -22,7 +22,7 @@ body {
   flex-basis: auto;
   align-self: center;
   width: 400px;
-  background-color: var(--dark-blue);
+  background-color: var(--black);
 }
 
 body {
@@ -36,12 +36,14 @@ h1 {
 }
 
 h2 {
-  font-family: "Poiret One", cursive;
+  font-family: 'Lato', sans-serif;
   color: var(--light-blue);
+
 }
 
 p {
-  color: var(--whitish);
+  font-family: 'Lato', sans-serif;
+  color: var(--light-blue);
 }
 
 @media (min-width: 768px) {
@@ -53,4 +55,41 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.image-post {
+  background-color: var(--dark-blue);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid var(--gray-green);
+  border-radius: 2px;
+}
+.post-title {
+  color: var(--light-blue);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+}
+.post-author {
+  color: var(--light-blue);
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.post-date {
+  color: var(--light-blue);
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
 }
