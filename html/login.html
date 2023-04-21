@@ -20,36 +20,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Poiret+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
       rel="stylesheet"
     />
 
     <title>Login</title>
   </head>
   <body>
-    <h1>Login:</h1>
-    <form id="loginForm">
-      <div>
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          minlength="2"
-        />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          minlength="8"
-        />
-      </div>
-      <input type="submit" value="Login" />
-    </form>
+    <div class="container-box">
+        <form id="loginForm">
+          <h1 class="title">Login:</h1>
+          <div>
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              minlength="2"
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              minlength="8"
+            />
+          </div>
+          <input type="submit" value="Login" />
+        </form>
+    </div>
   </body>
 </html>

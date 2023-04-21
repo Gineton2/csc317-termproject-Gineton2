@@ -22,68 +22,71 @@ registration.html – for guests to register accounts
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
+
     <!-- Google Fonts API -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Poiret+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
       rel="stylesheet"
     />
+
     <title>Registration</title>
   </head>
   <body>
-    <div class="box">
-      <h1>New User Registration:</h1>
-      <!--Is it better to use a legend tag here?-->
-      <form id="registration">
-        <div>
-          <label for="username-registration">Username:</label>
-          <input
-            type="text"
-            id="username-registration"
-            name="username-registration"
-            required
-            minlength="2"
-          />
-        </div>
-        <div>
-          <label for="password-registration">Password:</label>
-          <input
-            type="password"
-            id="password-registration"
-            name="password-registration"
-            required
-            minlength="8"
-          />
-        </div>
-        <div>
-          <label for="password-registration-confirmation"
-            >Confirm Password:</label
-          >
-          <input
-            type="password"
-            id="password-registration-confirmation"
-            name="password-registration-confirmation"
-            required
-            minlength="8"
-          />
-        </div>
-        <div>
-          <label for="age-check">Are you 13 years of age or older?</label>
-          <input type="checkbox" id="age-check" name="age-check" required />
-        </div>
-        <div>
-          <label for="TOS-check"
-            >Do you agree to the
-            <a href="fake-tos.sfsu.edu">Terms of Service and Privacy Rules</a
-            >?</label
-          >
-          <input type="checkbox" id="TOS-check" name="TOS-check" required />
-        </div>
-        <div>
-          <input type="submit" id="submit-registration" value="Register" />
-        </div>
-      </form>
+    <div class="container">
+      <div class="box">
+        <form id="registration" class="form-container">
+          <h1 class="title">New User Registration:</h1>
+          <div>
+            <label for="username-registration">Username:</label>
+            <input
+              type="text"
+              id="username-registration"
+              name="username-registration"
+              required
+              minlength="2"
+            />
+          </div>
+          <div>
+            <label for="password-registration">Password:</label>
+            <input
+              type="password"
+              id="password-registration"
+              name="password-registration"
+              required
+              minlength="8"
+            />
+          </div>
+          <div>
+            <label for="password-registration-confirmation"
+              >Confirm Password:</label
+            >
+            <input
+              type="password"
+              id="password-registration-confirmation"
+              name="password-registration-confirmation"
+              required
+              minlength="8"
+            />
+          </div>
+          <div>
+            <label for="age-check">Are you 13 years of age or older?</label>
+            <input type="checkbox" id="age-check" name="age-check" required />
+          </div>
+          <div>
+            <label for="TOS-check"
+              >Do you agree to the
+              <a href="fake-tos.sfsu.edu">Terms of Service and Privacy Rules</a
+              >?</label
+            >
+            <input type="checkbox" id="TOS-check" name="TOS-check" required />
+          </div>
+          <div>
+            <input type="submit" id="submit-registration" value="Register" />
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>

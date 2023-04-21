@@ -1,60 +1,116 @@
+/* Universal CSS */
 :root {
   /* colors */
-  --light-red: #c7749f;
-  --red: #eb2c5f;
-  --dark-blue: #09165c;
-  --light-blue: #74dde4;
-  --whitish: #f1f7f5;
-  --black: #030303;
-  --gray-green: #78927a;
-  --gray-green-yellow: #afb59f;
+  /* https://colorhunt.co/palette/1eb2a6d4f8e8ffa34df67575 */
+  --color-teal: #1eb2a6;
+  --color-light-teal: #d4f8e8;
+  --color-orange: #ffa34d;
+  --color-light-red: #f67575;
+
+  /* https://colorhunt.co/palette/00af91007965f58634ffcc29 */
+  --color-medium-teal-green: #00af91;
+  --color-dark-teal-green: #007965;
+  --color-vibrant-orange: #f58634;
+  --color-vibrant-yellow: #ffcc29;
+
+  /* color var definitions */
+  --color-alpha: var(--color-teal);
+  --color-beta: var(--color-light-teal);
+  --color-delta: var(--color-orange);
+  --color-gamma: var(--color-orange-red);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  /* height: 100%; */
-  /* width: 100%; */
-  /* box-sizing: border-box; */
-  /* align-items: flex-start; */
+  font-family: "Nunito", sans-serif;
+  background-color: var(--color-alpha);
+  color: var(--color-beta);
+  display: flex;
   justify-content: center;
-  flex-direction: column;
-  flex-basis: auto;
-  align-self: center;
-  width: 400px;
-  background-color: var(--black);
-
-  font-family: 'Lato', sans-serif;
-  color: var(--light-blue);
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  align-self: stretch;
-  align-content: center;
+form {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-alpha);
+  padding: 1rem;
+  border: 3px solid var(--color-delta);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-delta);
+  border-radius: 3px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+
+input[type="submit"], input[type="button"] {
+  background-color: var(--color-alpha);
+  border: none;
+  color: var(--color-beta);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: var(--color-beta);
+}
+
+label {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  color: var(--color-beta);
+  display: inline-block;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+a {
+  color: var(--color-beta);
+  text-decoration: none;
+}
+
+h1, h2, p {
+  margin-bottom: 1rem;
 }
 
 h1 {
-  font-family: "Poiret One", cursive;
-  color: var(--light-blue);
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
 }
 
 h2 {
-  font-family: 'Lato', sans-serif;
-  color: var(--light-blue);
-
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
 }
 
 p {
-  font-family: 'Lato', sans-serif;
-  color: var(--light-blue);
-}
-
-@media (min-width: 768px) {
-    flex-direction: row;
-    width: 768px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
 }
 
 /* Login CSS */
-/* use https://www.w3schools.com/css/tryit.asp?filename=trycss_form_responsive for reference */
-
 
 /* Image Post CSS */
 .posted-image {
@@ -64,8 +120,9 @@ p {
 }
 
 .image-post {
-  background-color: var(--dark-blue);
+  background-color: var(--color-alpha);
   width: 100%;
+  max-width: 600px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -74,28 +131,15 @@ p {
   align-content: center;
   align-self: center;
   margin: 0 auto;
-  padding: 0;
-  border: 1px solid var(--gray-green);
+  padding: 1rem;
+  border: 5px solid var(--color-gamma);
   border-radius: 2px;
-}
-.post-title {
-  color: var(--light-blue);
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin: 0;
-  padding: 0;
-}
-.post-author {
-  color: var(--light-blue);
-  font-size: 1.2rem;
-  font-weight: 300;
-  margin: 0;
-  padding: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.post-date {
-  color: var(--light-blue);
-  margin: 0;
-  padding: 0;
-  font-weight: 100;
+.title {
+  color: var(--color-gamma);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem
 }
