@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--
+    ❖ login.html – for users to log in
+      ▪ Must have document title.
+      ▪ Must have a section heading introducing the form.
+      ▪ Input fields are REQUIRED to be in form tags.
+      ▪ Must ask user to input a username.
+      ▪ Must ask user to input a password.
+        • Password input must be correct input type (i.e. when I type I should not see the password).
+      ▪ Must have the user click a submit button to submit login form.
+  -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <!-- Google Fonts API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&family=Poiret+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
       rel="stylesheet"
     />
-    <!---->
     <title>Login</title>
   </head>
 
   <body>
-    <h1>Login:</h1>
-    <form id="loginForm">
-      <div>
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          minlength="2"
-        />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          minlength="8"
-        />
-      </div>
-      <input type="submit" value="Login" />
-    </form>
+    <div class="container">
+        <form id="login-form" class="form-container">
+          <h1 class="title">Login:</h1>
+          <div>
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              minlength="2"
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              minlength="8"
+            />
+          </div>
+          <input type="submit" value="Login" />
+        </form>
+    </div>
   </body>
 </html>

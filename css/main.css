@@ -1,36 +1,157 @@
-/*/ red_color: #c7749f
-blue color: #74dde4
-white: #f1f7f5
-black: #030303
-green: #78927a
-green_yellow: #afb59f
-yellow: #78927a
-*/
+/* Universal CSS */
+:root {
+  /* colors */
+
+  /* alternate color palletes */
+  /* https://colorhunt.co/palette/1eb2a6d4f8e8ffa34df67575 */
+  /* --color-teal: #1eb2a6;
+  --color-light-teal: #d4f8e8;
+  --color-light-orange: #ffa34d;
+  --color-light-red: #f67575; */
+
+  /* https://colorhunt.co/palette/00af91007965f58634ffcc29 */
+  /* --color-medium-teal-green: #00af91;
+  --color-dark-teal-green: #007965;
+  --color-vibrant-orange: #f58634;
+  --color-vibrant-yellow: #ffcc29; */
+
+  /* https://colorhunt.co/palette/00425a1f8a70bfdb38fc7300 */
+  /* --color-peacock-blue: #00425a;
+  --color-medium-teal: #1f8a70;
+  --color-light-green: #bfdb38;
+  --color-vibrant-orange: #fc7300; */
+
+  /* https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51 */
+  --color-deep-navy: #264653;
+  --color-medium-teal: #2a9d8f;
+  --color-mild-yellow: #e9c46a;
+  --color-creamsicle-orange: #f4a261;
+  --color-deep-orange: #e76f51;
+
+  /* color var definitions */
+  --color-alpha: #264653 /* var(--color-deep-navy) */;
+  --color-beta: #2a9d8f /* var(--color-medium-teal) */;
+  --color-delta: #e9c46a /* var(--color-mild-yellow) */;
+  --color-gamma: #f4a261 /* var(--color-creamsicle-orange) */;
+  --color-epsilon: #e76f51 /* var(--color-deep-orange) */;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  /* height: 100%; */
-  /* width: 100%; */
-  /* box-sizing: border-box; */
+  font-family: "Nunito", sans-serif;
+  background-color: var(--color-alpha);
+  color: var(--color-delta);
   display: flex;
-  font-family: sans-serif;
-  /* align-items: flex-start; */
-  /* justify-content: center; */
-  flex-direction: column;
-  flex-basis: auto;
-  align-self: center;
-  width: 400px;
-  background-color: #f1f7f5;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-body:first-child {
-  align-self: stretch;
-  align-content: center;
+.container {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-alpha);
+  padding: 1rem;
+  border: 3px solid var(--color-delta);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.checkbox-prompt-container {
+  margin-bottom: 1rem;
+}
+
+input:not([type="checkbox"]), textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-delta);
+  border-radius: 3px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+
+input[type="submit"], input[type="button"] {
+  background-color: var(--color-beta);
+  border: none;
+  color: var(--color-delta);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
+  padding: 1rem;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: var(--color-epsilon);
+}
+
+a {
+  color: var(--color-delta);
+  /* text-decoration: none; */
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  color: var(--color-delta);
+  font-weight: 800;
+  margin-bottom: 1rem
+}
+
 h1 {
-  font-family: "Poiret One", cursive;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
 }
 
-@media (min-width: 768px) {
-  body {
-    flex-direction: row;
-  }
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+}
+
+p {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+
+/* Login CSS */
+
+/* Image Post CSS */
+.posted-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-post {
+  background-color: var(--color-alpha);
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.sub-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }

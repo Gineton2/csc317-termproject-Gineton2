@@ -2,14 +2,14 @@
 <html lang="en">
   <!--
 ❖ postimage.html – for registered users to post images 
-    o Must have document title
-    o Must have a section heading introducing the form 
-    o Input fields are REQUIRED to be in form tags.
-    o Must ask user to input a post Title
-    o Must ask user to input a post Description
-    o Must ask user to input an image (or images, this is your choice)
-    o Must ask user to accept Acceptable Use Policy for uploading images. 
-    o Must ask user to submit image post via a button.
+    ▪ Must have document title
+    ▪ Must have a section heading introducing the form 
+    ▪ Input fields are REQUIRED to be in form tags.
+    ▪ Must ask user to input a post Title
+    ▪ Must ask user to input a post Description
+    ▪ Must ask user to input an image (or images, this is your choice)
+    ▪ Must ask user to accept Acceptable Use Policy for uploading images. 
+    ▪ Must ask user to submit image post via a button.
 -->
 
   <head>
@@ -17,50 +17,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <!-- Google Fonts API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&family=Poiret+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
       rel="stylesheet"
     />
-    <!---->
+
     <title>Post an Image</title>
   </head>
-
   <body>
-    <h1>Post an Image</h1>
-    <form>
-      <div>
-        <label for="post-title-input">Image Title:</label>
-        <input type="text" name="post-title-input" id="post-title-input" />
+    <div class="container">
+        <form id="post-image-form" class="form-container">
+          <h1 class="title">Post an Image</h1>
+          <div>
+            <label for="post-title-input">Image Title:</label>
+            <input type="text" name="post-title-input" id="post-title-input" />
+          </div>
+          <div>
+            <label for="post-description-input">Image Description:</label>
+            <input
+              type="text"
+              name="post-description-input"
+              id="post-description-input"
+            />
+          </div>
+          <div>
+            <label for="image-input">Upload an Image:</label>
+            <input type="file" name="image-input" id="image-input" required />
+          </div>
+          <div>
+            <label for="use-policy-check"
+              >Do you agree to the
+              <a href="fake-AUP.sfsu.edu">Acceptable Use Policy</a>?</label
+            >
+            <input
+              type="checkbox"
+              id="use-policy-check"
+              name="use-policy-check"
+              required
+            />
+          </div>
+          <div>
+            <input type="submit" id="submit-image" value="Post Image" />
+          </div>
+        </form>
       </div>
-      <div>
-        <label for="post-description-input">Image Description:</label>
-        <input
-          type="text"
-          name="post-description-input"
-          id="post-description-input"
-        />
-      </div>
-      <div>
-        <label for="image-input">Upload an Image:</label>
-        <input type="file" name="image-input" id="image-input" required />
-      </div>
-      <div>
-        <label for="use-policy-check"
-          >Do you agree to the
-          <a href="fake-AUP.sfsu.edu">Acceptable Use Policy</a>?</label
-        >
-        <input
-          type="checkbox"
-          id="use-policy-check"
-          name="use-policy-check"
-          required
-        />
-      </div>
-      <div>
-        <input type="submit" id="submit-image" value="Post Image" />
-      </div>
-    </form>
   </body>
 </html>

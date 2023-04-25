@@ -2,24 +2,37 @@
 <html lang="en">
   <!--
 Imagepost.html – for viewing an individual image post
-    o Must have a section for the post’s post title.
-    o Must have a section for the post’s post author
-    o Must have a section for the post’s post creation time. 
-    o Must have a section for the post’s image
+    ▪ Must have a section for the post’s post title.
+    ▪ Must have a section for the post’s post author
+    ▪ Must have a section for the post’s post creation time. 
+    ▪ Must have a section for the post’s image
 -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
+
+    <!-- Google Fonts API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+
     <title>View Post</title>
   </head>
   <body>
-    <div class="image-post">
-      <h1 class="post-title">Title:</h1>
-      <h2 class="post-author">Author:</h2>
-      <p class="post-creation-time">Time posted:</p>
-      <img class="posted-image" alt="fake" src="fakeimage.jpg" />
+    <div class="container">
+      <div class="image-post">
+        <h1 class="title">Studying in São Paulo</h1>
+        <img class="posted-image" alt="fake" src="../images/lofi-br.png" />
+        <div class="sub-image">
+          <p class="post-author">Tommy Jobim</p>
+          <p class="post-date">2020-03-01 at 23:59</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
