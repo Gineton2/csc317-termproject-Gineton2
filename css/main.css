@@ -4,7 +4,7 @@
   /* https://colorhunt.co/palette/1eb2a6d4f8e8ffa34df67575 */
   --color-teal: #1eb2a6;
   --color-light-teal: #d4f8e8;
-  --color-orange: #ffa34d;
+  --color-light-orange: #ffa34d;
   --color-light-red: #f67575;
 
   /* https://colorhunt.co/palette/00af91007965f58634ffcc29 */
@@ -13,11 +13,25 @@
   --color-vibrant-orange: #f58634;
   --color-vibrant-yellow: #ffcc29;
 
+  /* https://colorhunt.co/palette/00425a1f8a70bfdb38fc7300 */
+  --color-peacock-blue: #00425a;
+  --color-medium-teal: #1f8a70;
+  --color-light-green: #bfdb38;
+  --color-vibrant-orange: #fc7300;
+
+  /* https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51 */
+  --color-deep-navy: #264653;
+  --color-medium-teal: #2a9d8f;
+  --color-mild-yellow: #e9c46a;
+  --color-creamsicle-orange: #f4a261;
+  --color-deep-orange: #e76f51;
+
   /* color var definitions */
-  --color-alpha: var(--color-teal);
-  --color-beta: var(--color-light-teal);
-  --color-delta: var(--color-orange);
-  --color-gamma: var(--color-orange-red);
+  --color-alpha: #264653 /* var(--color-deep-navy) */;
+  --color-beta: #2a9d8f /* var(--color-medium-teal) */;
+  --color-delta: #e9c46a /* var(--color-mild-yellow) */;
+  --color-gamma: #f4a261 /* var(--color-creamsicle-orange) */;
+  --color-epsilon: #e76f51 /* var(--color-deep-orange) */;
 }
 
 * {
@@ -29,7 +43,7 @@
 body {
   font-family: "Nunito", sans-serif;
   background-color: var(--color-alpha);
-  color: var(--color-beta);
+  color: var(--color-delta);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +52,7 @@ body {
   padding: 0;
 }
 
-form {
+.container {
   width: 100%;
   max-width: 400px;
   background-color: var(--color-alpha);
@@ -48,7 +62,11 @@ form {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-input, textarea {
+.checkbox-prompt-container {
+  margin-bottom: 1rem;
+}
+
+input:not([type="checkbox"]), textarea {
   display: block;
   width: 100%;
   margin-bottom: 1rem;
@@ -60,39 +78,34 @@ input, textarea {
 }
 
 input[type="submit"], input[type="button"] {
-  background-color: var(--color-alpha);
+  background-color: var(--color-beta);
   border: none;
-  color: var(--color-beta);
+  color: var(--color-delta);
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
   width: 100%;
   text-align: center;
+  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
+  padding: 1rem;
 }
 
 input[type="submit"]:hover, input[type="button"]:hover {
-  background-color: var(--color-beta);
-}
-
-label {
-  font-family: "Nunito", sans-serif;
-  font-size: 1rem;
-  color: var(--color-beta);
-  display: inline-block;
-}
-
-input[type="checkbox"] {
-  vertical-align: middle;
-  margin-left: 0.5rem;
+  background-color: var(--color-epsilon);
 }
 
 a {
-  color: var(--color-beta);
-  text-decoration: none;
+  color: var(--color-delta);
+  /* text-decoration: none; */
 }
 
-h1, h2, p {
-  margin-bottom: 1rem;
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  color: var(--color-delta);
+  font-weight: 800;
+  margin-bottom: 1rem
 }
 
 h1 {
@@ -132,14 +145,11 @@ p {
   align-self: center;
   margin: 0 auto;
   padding: 1rem;
-  border: 5px solid var(--color-gamma);
-  border-radius: 2px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  color: var(--color-gamma);
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem
+.sub-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
