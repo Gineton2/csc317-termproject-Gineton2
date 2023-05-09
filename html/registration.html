@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!--
-registration.html – for guests to register accounts
+  <!--registration.html – for guests to register accounts
     ▪ Must have a document title
     ▪ Must have a section heading introducing the form 
     ▪ Input fields are REQUIRED to be in form tags.
@@ -16,7 +15,7 @@ registration.html – for guests to register accounts
     ▪ Must ask users to accept TOS and Privacy rules
         • Simply make a link that goes nowhere, but the text says TOS and Privacy Rules. 
     ▪ Must have the user click a submit button to submit registration form.
- -->
+  -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,6 +35,13 @@ registration.html – for guests to register accounts
     <div class="container">
       <h1 class="title">New User Registration:</h1>
       <form id="registration" class="form-container">
+        <label for="email-registration">Email:</label>
+        <input
+          type="email"
+          id="email-registration"
+          name="email-registration"
+          required
+        />
         <label for="username-registration">Username:</label>
         <input
           type="text"
