@@ -8,36 +8,60 @@ If the data is invalid the form SHOULD NOT BE submitted. If the data is valid, s
 
 const form = document.getElementsByTagName('form')[0];
 const email = document.getElementById('email-registration');
-const userName = document.getElementById('username-registration');
+const username = document.getElementById('username-registration');
 const password = document.getElementById('password-registration');
+const passwordConfirmation = document.getElementById('password-confirmation-registration');
+
+const usernameError = document.getElementById('username-error');
+const passwordError = document.getElementById('password-error');
+const passwordConfirmationError = document.getElementById('password-confirmation-error');
 
 
 function validateForm(event){
     event.preventDefault();
 
+    let formIsValid = true;
+
     // email, age-check, and TOS validation performed with HTML5
-    validateUserName();
-    validatePassword();
+    formIsValid= validateUsername() && formIsValid; formIsValid= validatePassword() && formIsValid;
+
+    if (formIsValid){
+        form.submit();
+    }
 }
 
-function validateUserName(){
-    validateUserNameInitialChar();
-    validateUserNameLength();
+function validateUsername(){
+    return (validateUsernameInitialChar() &&
+    validateUsernameLength());
 }
 
-// require the user to enter a username that begins with a character ([a-zA-Z]).
-function validateUserNameInitialChar(){}
+// require the user to enter a Username that begins with a character ([a-zA-Z]).
+function validateUsernameInitialChar(){
+    const regex = /^[a-zA-Z]/;
+    const isValid = regex.test(username.value)
+    if (!isValid){
+        usernameError.textContent = 'Username must begin with a letter.';
+    }
+    return isValid;
+}
 
-// require the user to enter a username that is 3 or more alphanumeric characters.
-function validateUserNameLength(){}
+// require the user to enter a Username that is 3 or more alphanumeric characters.
+function validateUsernameLength(){
+    const isValid = username.value.length >= 3;
+    if (!isValid){
+        usernameError.textContent = 'Username must be 3 or more characters.';
+    }
+    return isValid;
+}
 
 // require the user to enter a password that is 8 or more characters AND contains at least 1 upper case letter AND 1 number and 1 of the following special characters ( / * - + ! @ # $ ^ & * ).
 function validatePassword(){
-    validatePasswordLength();
-    validatePasswordUpper();
-    validatePasswordNumber();
-    validatePasswordSpecial();
-    validatePasswordMatch();
+    return true;
+    // (validatePasswordLength() &&
+    //     validatePasswordUpper() &&
+    //     validatePasswordNumber() &&
+    //     validatePasswordSpecial() &&
+    //     validatePasswordMatch());
 }
 
 function validatePasswordLength(){
