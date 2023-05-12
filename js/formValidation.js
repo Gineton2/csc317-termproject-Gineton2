@@ -1,29 +1,29 @@
 /** Form Validation
+registration.html – for guests to register accounts
 
-ALL forms should be in <form> tags. If your form is built using <table> tags this needs to be removed.
+Some of these requirements can be verified as the user types and some can be verified when the user clicks the submit button. 
 
-FORM VALIDATION DONE VIA HTML5 IS NOT ALLOWED UNLESS OTHERWISE STATED, LATER WE CAN ADD THEM IN TO SIMPLIFY THE VALIDATION.
-
-Students are required to add JavaScript to their registration form per the specifications below:
-    ❖ registration.html – for guests to register accounts
-        o require the user to enter a username that begins with a character ([a-zA-Z]).
-        o require the user to enter a username that is 3 or more alphanumeric characters.
-        o require the user to enter a password that is 8 or more characters AND contains at least 1 upper case letter AND 1 number and 1 of the following special characters ( / * - + ! @ # $ ^ & * ).
-        o require that the password and confirm password inputs are the same. o require the user to enter an email that is valid.
-    ▪ This one CAN BE done with the type attribute set to “email” o require the user to select that they are 13+ years of age.
-    ▪ This one CAN BE done with the HTML attribute require o require the user to select TOS and Privacy rules.
-    ▪ This one CAN BE done with the HTML attribute require
-When implementing the above requirements think about what happens when these requirements are not met. Some of these requirements can be verified as the user types and some can be verified when the user clicks the submit button. 
-
-These design choices I leave up to you. If the data is invalid the form SHOULD NOT BE submitted. If the data is valid, simply let the page refresh or show a message saying the form was submitted.
+If the data is invalid the form SHOULD NOT BE submitted. If the data is valid, simply let the page refresh or show a message saying the form was submitted.
 **/
 
-function validateForm(){
+const form = document.getElementsByTagName('form')[0];
+const email = document.getElementById('email-registration');
+const userName = document.getElementById('username-registration');
+const password = document.getElementById('password-registration');
 
+
+function validateForm(event){
+    event.preventDefault();
+
+    // email, age-check, and TOS validation performed with HTML5
+    validateUserName();
+    validatePassword();
 }
 
-
-function validateUserName(){}
+function validateUserName(){
+    validateUserNameInitialChar();
+    validateUserNameLength();
+}
 
 // require the user to enter a username that begins with a character ([a-zA-Z]).
 function validateUserNameInitialChar(){}
@@ -32,10 +32,32 @@ function validateUserNameInitialChar(){}
 function validateUserNameLength(){}
 
 // require the user to enter a password that is 8 or more characters AND contains at least 1 upper case letter AND 1 number and 1 of the following special characters ( / * - + ! @ # $ ^ & * ).
-function validatePassword(){}
+function validatePassword(){
+    validatePasswordLength();
+    validatePasswordUpper();
+    validatePasswordNumber();
+    validatePasswordSpecial();
+    validatePasswordMatch();
+}
 
-// require that the password and confirm password inputs are the same. 
-function validatePasswordMatch(){}
+function validatePasswordLength(){
+    // 8 or more characters
+}
 
-// require the user to enter an email that is valid.
-function validateEmail(){}
+function validatePasswordUpper(){
+    // contains at least 1 upper case letter
+}
+
+function validatePasswordNumber(){
+    // contains at least 1 number
+}
+
+function validatePasswordSpecial(){
+    // contains at least 1 of the following special characters ( / * - + ! @ # $ ^ & * )
+}
+
+function validatePasswordMatch(){
+    // require that the password and confirm password inputs are the same. 
+}
+
+document.getElementById('registration').addEventListener('submit', validateForm);
