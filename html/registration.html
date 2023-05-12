@@ -40,6 +40,7 @@
           type="email"
           id="email-registration"
           name="email-registration"
+          placeholder= "ex: user123@email.com"
           required
         />
         <label for="username-registration">Username:</label>
@@ -47,12 +48,14 @@
           type="text"
           id="username-registration"
           name="username-registration"
+          placeholder= "ex: user123"
         />
         <label for="password-registration">Password:</label>
         <input
           type="password"
           id="password-registration"
           name="password-registration"
+          placeholder="8 characters minimum"
         />
         <label for="password-registration-confirmation"
           >Confirm Password:</label
@@ -61,6 +64,7 @@
           type="password"
           id="password-registration-confirmation"
           name="password-registration-confirmation"
+          placeholder="Same as above"
         />
         <div class="checkbox-prompt-container">
           <label for="age-check">Are you 13 years of age or older?</label>
@@ -77,5 +81,6 @@
         <input type="submit" id="submit-registration" value="Register" />
       </form>
     </div>
+    <script src="/js/formValidation.js"></script>
   </body>
 </html>
