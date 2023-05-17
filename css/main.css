@@ -137,5 +137,6 @@ p {
 }
 
 .error {
-  color: red;
+  color: var(--color-epsilon);
+  /* color: red; */
 }
