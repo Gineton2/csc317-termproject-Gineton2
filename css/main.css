@@ -140,3 +140,22 @@ p {
   color: var(--color-epsilon);
   /* color: red; */
 }
+
+/* // image-posts  */
+.image-post-container {
+  width: 20%;
+  max-width: 33%;
+  background-color: var(--color-alpha);
+  padding: 1rem;
+  border: 3px solid var(--color-delta);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#image-posts {  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  transition: opacity .3s;
+}
