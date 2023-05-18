@@ -65,7 +65,8 @@ body {
   margin-bottom: 1rem;
 }
 
-input:not([type="checkbox"]), textarea {
+input:not([type="checkbox"]),
+textarea {
   display: block;
   width: 100%;
   margin-bottom: 1rem;
@@ -76,7 +77,8 @@ input:not([type="checkbox"]), textarea {
   font-size: 1rem;
 }
 
-input[type="submit"], input[type="button"] {
+input[type="submit"],
+input[type="button"] {
   background-color: var(--color-beta);
   border: none;
   color: var(--color-delta);
@@ -89,7 +91,8 @@ input[type="submit"], input[type="button"] {
   padding: 1rem;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
   background-color: var(--color-epsilon);
 }
 
@@ -99,11 +102,11 @@ a {
 
 .title {
   font-family: "Montserrat", sans-serif;
-  font-size: calc(.5rem + .8vw);
+  font-size: calc(.6rem + 0.3vw);
   color: var(--color-delta);
   font-weight: 800;
-  margin-bottom: .5rem;
-  overflow: hidden;
+  margin-bottom: 0.5rem;
+  overflow: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: auto;
@@ -111,7 +114,7 @@ a {
 
 .post-info {
   font-family: "Nunito", sans-serif;
-  font-size: calc(.5rem + .5vw);
+  font-size: calc(0.4rem + 0.5vw);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -136,23 +139,26 @@ a {
 .image-post-container {
   min-width: 1rem;
   background-color: var(--color-alpha);
-  padding: .5rem;
+  padding: 0.5rem;
   border: 3px solid var(--color-delta);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: calc(.1rem + .5vw);
-  transition: opacity .5s;
+  margin: calc(0.1rem + 0.5vw);
+  transition: opacity 0.5s;
 }
 
-#image-posts {  
+#image-posts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(33.33%,1fr)); /* max 3 items */
-  margin: .5rem;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(33.33%, 1fr)
+  ); /* max 3 items */
+  margin: 0.5rem;
 }
 
 #items-count {
   font-family: "Nunito", sans-serif;
-  font-size: calc(1rem + .5vw);
+  font-size: calc(1rem + 0.5vw);
   color: var(--color-delta);
   margin: 1rem;
   display: flex;
@@ -161,12 +167,18 @@ a {
 
 @media (min-width: 1080px) {
   #image-posts {
-    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr)); /* max 4 items */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(25%, 1fr)
+    ); /* max 4 items */
   }
 }
 
 @media (min-width: 1600px) {
   #image-posts {
-    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr)); /* max 5 items */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(20%, 1fr)
+    ); /* max 5 items */
   }
 }
