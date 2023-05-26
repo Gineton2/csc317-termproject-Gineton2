@@ -98,10 +98,13 @@ input[type="button"]:hover {
 a {
   color: var(--color-delta);
 }
+a:hover {
+  color: var(--color-epsilon);
+}
 
 .title {
   font-family: "Montserrat", sans-serif;
-  font-size: calc(0.6rem + 0.3vw);
+  font-size: calc(0.6rem + 0.5vw);
   color: var(--color-delta);
   font-weight: 800;
   margin-bottom: 0.5rem;
@@ -128,10 +131,28 @@ a {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  margin: 0;
+}
+
+.post-author, .post-date {
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .error {
   color: var(--color-epsilon);
+}
+
+#footer {
+  font-family: "Nunito", sans-serif;
+  padding-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+  border-top: var(--color-delta) 1px solid;
+}
+
+#footer p, #footer a {
+  margin: 0;
+  padding: 0.5rem 0;
 }
 
 /* // image-posts  */
@@ -139,7 +160,7 @@ a {
   min-width: 1rem;
   background-color: var(--color-alpha);
   padding: 0.5rem;
-  border: 3px solid var(--color-delta);
+  border: 2px solid var(--color-delta);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: calc(0.1rem + 0.5vw);
