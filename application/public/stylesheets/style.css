@@ -142,15 +142,18 @@ a:hover {
   color: var(--color-epsilon);
 }
 
-#footer {
+header, footer {
   font-family: "Nunito", sans-serif;
-  padding-bottom: 1rem;
+  padding: 1rem 0 1rem 0;
+  margin: 0 0 0 0;
   text-align: center;
   width: 100%;
-  border-top: var(--color-delta) 1px solid;
+  border: var(--color-delta) solid;
+  border-width: 2px 0 2px 0;
+  position: auto;
 }
 
-#footer p, #footer a {
+footer p, footer a {
   margin: 0;
   padding: 0.5rem 0;
 }
