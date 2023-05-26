@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <!--registration.html – for guests to register accounts
+<!--registration.html – for guests to register accounts
     ▪ Must have a document title
     ▪ Must have a section heading introducing the form 
     ▪ Input fields are REQUIRED to be in form tags.
@@ -16,75 +14,33 @@
         • Simply make a link that goes nowhere, but the text says TOS and Privacy Rules. 
     ▪ Must have the user click a submit button to submit registration form.
   -->
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="public/css/main.css" />
-
-    <!-- Google Fonts API -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
-      rel="stylesheet"
-    />
-    <title>Registration</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="title">New User Registration:</h1>
-      <form id="registration" class="form-container">
-        <label for="email-registration">Email:</label>
-        <span class="error" id="email-error"></span>
-        <input
-          type="email"
-          id="email-registration"
-          name="email-registration"
-          placeholder= "ex: user123@email.com"
-          required
-        />
-        <label for="username-registration">Username:</label>
-        <span class="error" id="username-error"></span>
-        <input
-          type="text"
-          id="username-registration"
-          name="username-registration"
-          placeholder= "ex: user123"
-        />
-        <label for="password-registration">Password:</label>
-        <span class="error" id="password-error"></span>
-        <input
-          type="password"
-          id="password-registration"
-          name="password-registration"
-          placeholder="8 characters minimum"
-        />
-        <label for="password-confirmation-registration"
-          >Confirm Password:</label
-        >
-        <span class="error" id="password-confirmation-error"></span>
-        <input
-          type="password"
-          id="password-confirmation-registration"
-          name="password-confirmation-registration"
-          placeholder="Confirm password"
-        />
-        <div class="checkbox-prompt-container">
-          <label for="age-check">Are you 13 years of age or older?</label>
-          <input type="checkbox" id="age-check" name="age-check" required />
-        </div>
-        <div class="checkbox-prompt-container">
-          <label for="TOS-check"
-            >Do you agree to our
-            <a href="fake-tos.sfsu.edu">Terms of Service</a
-            >?</label
-          >
-          <input type="checkbox" id="TOS-check" name="TOS-check" required />
-        </div>
-        <input type="submit" id="submit-registration" value="Register" />
-      </form>
+<div class="container">
+  <h1 class="title">New User Registration:</h1>
+  <form id="registration" class="form-container">
+    <label for="email-registration">Email:</label>
+    <span class="error" id="email-error"></span>
+    <input type="email" id="email-registration" name="email-registration" placeholder="ex: user123@email.com"
+      required />
+    <label for="username-registration">Username:</label>
+    <span class="error" id="username-error"></span>
+    <input type="text" id="username-registration" name="username-registration" placeholder="ex: user123" />
+    <label for="password-registration">Password:</label>
+    <span class="error" id="password-error"></span>
+    <input type="password" id="password-registration" name="password-registration" placeholder="8 characters minimum" />
+    <label for="password-confirmation-registration">Confirm Password:</label>
+    <span class="error" id="password-confirmation-error"></span>
+    <input type="password" id="password-confirmation-registration" name="password-confirmation-registration"
+      placeholder="Confirm password" />
+    <div class="checkbox-prompt-container">
+      <label for="age-check">Are you 13 years of age or older?</label>
+      <input type="checkbox" id="age-check" name="age-check" required />
     </div>
-    <script src="public/js/formValidation.js"></script>
-  </body>
-</html>
+    <div class="checkbox-prompt-container">
+      <label for="TOS-check">Do you agree to our
+        <a href="fake-tos.sfsu.edu">Terms of Service</a>?</label>
+      <input type="checkbox" id="TOS-check" name="TOS-check" required />
+    </div>
+    <input type="submit" id="submit-registration" value="Register" />
+  </form>
+</div>
+<script src="public/js/formValidation.js"></script>

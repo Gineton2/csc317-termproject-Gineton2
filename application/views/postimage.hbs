@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <!--
+<!--
 ❖ postimage.html – for registered users to post images 
     ▪ Must have document title
     ▪ Must have a section heading introducing the form 
@@ -11,49 +9,18 @@
     ▪ Must ask user to accept Acceptable Use Policy for uploading images. 
     ▪ Must ask user to submit image post via a button.
 -->
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="public/css/main.css" />
-
-    <!-- Google Fonts API -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Nunito&family=Poiret+One&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Post an Image</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="title">Post an Image</h1>
-      <form id="post-image-form" class="form-container">
-        <label for="post-title-input">Image Title:</label>
-        <input type="text" name="post-title-input" id="post-title-input" />
-        <label for="post-description-input">Image Description:</label>
-        <input
-          type="text"
-          name="post-description-input"
-          id="post-description-input"
-        />
-        <label for="image-input">Upload an Image:</label>
-        <input type="file" name="image-input" id="image-input" required />
-        <label for="use-policy-check"
-          >Do you agree to the
-          <a href="fake-AUP.sfsu.edu">Acceptable Use Policy</a>?</label
-        >
-        <input
-          type="checkbox"
-          id="use-policy-check"
-          name="use-policy-check"
-          required
-        />
-        <input type="submit" id="submit-image" value="Post Image" />
-      </form>
-    </div>
-  </body>
-</html>
+<div class="container">
+  <h1 class="title">Post an Image</h1>
+  <form id="post-image-form" class="form-container">
+    <label for="post-title-input">Image Title:</label>
+    <input type="text" name="post-title-input" id="post-title-input" />
+    <label for="post-description-input">Image Description:</label>
+    <input type="text" name="post-description-input" id="post-description-input" />
+    <label for="image-input">Upload an Image:</label>
+    <input type="file" name="image-input" id="image-input" required />
+    <label for="use-policy-check">Do you agree to the
+      <a href="fake-AUP.sfsu.edu">Acceptable Use Policy</a>?</label>
+    <input type="checkbox" id="use-policy-check" name="use-policy-check" required />
+    <input type="submit" id="submit-image" value="Post Image" />
+  </form>
+</div>
