@@ -7,6 +7,10 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const errorPrint = require("./helpers/debug/debugprinters").errorPrint;
+const requestPrint = require("./helpers/debug/debugprinters").requestPrint;
+// successPrint performed in route files?
+// const successPrint = require("./helpers/debug/debugprinters").successPrint;
 
 const app = express();
 
@@ -34,6 +38,12 @@ app.use(cookieParser());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+// route middleware from ./helpers/debug/debugprinters.js
+app.use((req,res,next) => {
+  requestPrint(req.url);
+  next();
+});
+
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 
@@ -54,10 +64,12 @@ app.use((req,res,next) => {
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = err;
+  errorPrint(err);
   console.log(err);
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+  // res.render("error", {err_message: err});
 });
 
 module.exports = app;
