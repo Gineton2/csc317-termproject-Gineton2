@@ -7,6 +7,7 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const dbRouter = require("./routes/sampadb");
 const errorPrint = require("./helpers/debug/debugprinters").errorPrint;
 const requestPrint = require("./helpers/debug/debugprinters").requestPrint;
 // successPrint performed in route files?
@@ -46,6 +47,7 @@ app.use((req,res,next) => {
 
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
+app.use("/sampadb", dbRouter);
 
 
 /**

@@ -4,10 +4,12 @@ const pool = mysql.createPool({
     connectionLimit: 50,
     host: 'localhost',
     user: 'root',
-    password: 'hunter2',
+    password: '', //'hunter2',
     database: 'sampadb',
+    connectionLimit: 50,
+    waitForConnections: true,
     // debug is for verbose logging
-    // debug: true
+    debug: false,
 });
 
 const promisePool = pool.promise();
