@@ -70,6 +70,7 @@ app.use(function (err, req, res, next) {
   console.log(err);
   // render the error page
   res.status(err.status || 500);
+  // res.send("Database error.")
   res.render("error");
   // res.render("error", {err_message: err});
 });

@@ -14,6 +14,8 @@ router.get('/getAllUsers', async (req, res, next) => {
     }
 });
 
+
+
 router.get('/getAllPosts', (req, res, next) => {
     db.query('SELECT * from posts;')
         .then(([results, fields]) => {
@@ -22,16 +24,21 @@ router.get('/getAllPosts', (req, res, next) => {
         })
 });
 
-router.get('/getAllPostsP', (req, res, next) => {
+router.get('/getAllPostsP', (req, res, next) => { // P for promise
     db.query('SELECT * from posts;')
         .then(([results, fields]) => {
             console.log(results);
-            // to use multiple `.then`'s, a promise must be returned
-            return db.query("SELECT * FROM posts WHERE id = 2")
-        })
-        .then(([results, fields]) => {
-            console.log(results);
             res.send(results);
+            // to use multiple `.then`'s, a promise must be returned
+            // return db.query("SELECT * FROM posts WHERE id = 2")
+        })
+        // example of a chained `.then`:
+        // .then(([results, fields]) => {
+        //     console.log(results); 
+        //     res.send(results);
+        // })
+        .catch((err) => {
+            next(err);
         })
 });
 
@@ -48,10 +55,13 @@ router.post('/createUser', (req, res, next) => {
 
     db.query(baseSQL, [username, email, password]).then(([results, fields]) => {
         if (results && results.affectedRows) {
-            res.send("user was made");
+            res.send("User was made successfully.");
         } else {
-            res.send("user was not made successfully");
+            res.send("User was not made.");
         }
+    })
+    .catch((err) => {
+        next(err);
     })
 });
 
