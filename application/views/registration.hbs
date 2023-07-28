@@ -16,21 +16,49 @@
   -->
 <div class="container">
   <h1 class="title">New User Registration:</h1>
-  <form id="registration" class="form-container">
+  <form
+    id="registration"
+    class="form-container"
+    method="POST"
+    action="/users/register"
+    enctype="application/x-www-form-urlencoded"
+  >
     <label for="email-registration">Email:</label>
     <span class="error" id="email-error"></span>
-    <input type="email" id="email-registration" name="email-registration" placeholder="ex: user123@email.com"
-      required />
+    <input
+      type="email"
+      id="email-registration"
+      name="email"
+      placeholder="ex: user123@email.com"
+      required
+    />
     <label for="username-registration">Username:</label>
     <span class="error" id="username-error"></span>
-    <input type="text" id="username-registration" name="username-registration" placeholder="ex: user123" />
+    <input
+      type="text"
+      id="username-registration"
+      name="username"
+      placeholder="ex: user123"
+      required
+    />
     <label for="password-registration">Password:</label>
     <span class="error" id="password-error"></span>
-    <input type="password" id="password-registration" name="password-registration" placeholder="8 characters minimum" />
+    <input
+      type="password"
+      id="password-registration"
+      name="password"
+      placeholder="8 characters minimum"
+      required
+    />
     <label for="password-confirmation-registration">Confirm Password:</label>
     <span class="error" id="password-confirmation-error"></span>
-    <input type="password" id="password-confirmation-registration" name="password-confirmation-registration"
-      placeholder="Confirm password" />
+    <input
+      type="password"
+      id="password-confirmation-registration"
+      name="passwordConfirmation"
+      placeholder="Confirm password"
+      required
+    />
     <div class="checkbox-prompt-container">
       <label for="age-check">Are you 13 years of age or older?</label>
       <input type="checkbox" id="age-check" name="age-check" required />
