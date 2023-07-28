@@ -9,7 +9,7 @@ const pool = mysql.createPool({
     connectionLimit: 50,
     waitForConnections: true,
     // debug is for verbose logging
-    debug: false,
+    debug: true,
 });
 
 const promisePool = pool.promise();
