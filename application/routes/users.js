@@ -6,11 +6,14 @@ const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 
 const UserError = require('../helpers/error/UserError');
 
+var bcrypt = require('bcrypt');
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
+/* Registration */
 router.post('/register', (req, res, next) => {
   let email = req.body.email;
   let username = req.body.username;
@@ -34,16 +37,18 @@ router.post('/register', (req, res, next) => {
     })
     .then(([results, fields]) => {
       if (results && results.length == 0) {
-        // username is available
-        let baseSQL = 'INSERT INTO users (username, email, password, created) VALUES (?, ?, ?, now())';
-        return db.execute(baseSQL, [username, email, password]);
-      } else {
+        return bcrypt.hash(password, 11);
+      } else { 
         throw new UserError(
           "Registration Failed: Username already exists",
           "/registration",
           200
         );
       }
+    })
+    .then((hashedPassword) => {
+      let baseSQL = 'INSERT INTO users (username, email, password, created) VALUES (?, ?, ?, now())';
+      return db.execute(baseSQL, [username, email, hashedPassword]);
     })
     .then(([results, fields]) => {
       if (results && results.affectedRows) {
@@ -82,8 +87,8 @@ router.post('/login', (req, res, next) => {
         successPrint(`User ${username} is logged in.`);
         res.locals.logged = true;
         res.render('index');
-        res.cookie("Logged",username, {expires: new Date(Date.now() + 900000), httpOnly: false });
-        res.cookie("isLogged","true", {expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
+        res.cookie("Logged", username, { expires: new Date(Date.now() + 900000), httpOnly: false });
+        res.cookie("isLogged", "true", { expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
         res.redirect('/');
       } else {
         throw new UserError(
