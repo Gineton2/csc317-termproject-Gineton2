@@ -1,3 +1,10 @@
 <header>
-    <h1>Sampa</h1>
+  <h1>Sampa</h1>
+  <!-- TODO: refactor log in button to a navbar partial -->
+  {{#if logged}}
+    <a id="log-out-button" class="container">Log Out</a>
+  {{else}}
+    <a id="log-in-button" class="container" href="/login" id="log-in-button">Log
+      In</a>
+  {{/if}}
 </header>

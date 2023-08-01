@@ -24,5 +24,21 @@
     {{> header}}
     {{{body}}}
     {{> footer}}
+
+    {{#if logged}}
+    <script>
+      let ele = document.getElementById("log-out-button");
+      if (ele) {
+        ele.onclick = (even) => {
+          fetch('/users/logout',{
+            method: 'POST'
+          })
+          .then((data) => {
+            location.replace('/');
+          })
+        }
+      }
+    </script>
+    {{/if}}
   </body>
 </html>
