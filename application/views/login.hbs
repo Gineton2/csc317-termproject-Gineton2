@@ -10,7 +10,7 @@
   -->
 <div class="container">
   <h1 class="title">Login:</h1>
-  <form id="login-form" class="form-container">
+  <form id="login-form" class="form-container" method="POST" action="/users/login" enctype="application/x-www-form-urlencoded">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required minlength="2" />
     <label for="password">Password:</label>
