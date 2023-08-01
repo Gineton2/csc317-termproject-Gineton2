@@ -38,7 +38,7 @@ router.post('/register', (req, res, next) => {
     .then(([results, fields]) => {
       if (results && results.length == 0) {
         return bcrypt.hash(password, 11);
-      } else { 
+      } else {
         throw new UserError(
           "Registration Failed: Username already exists",
           "/registration",
@@ -74,25 +74,37 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+/* Login */
 router.post('/login', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 
   /* TODO: Server-side validation */
 
-  let baseSQL = 'SELECT username, password FROM users WHERE username=? AND password=?';
-  db.execute(baseSQL, [username, password])
+  let baseSQL = 'SELECT username, password FROM users WHERE username=?';
+  db.execute(baseSQL, [username])
     .then(([results, fields]) => {
       if (results && results.length == 1) {
+        let hashedPassword = results[0].password;
+        return bcrypt.compare(password, hashedPassword);
+      } else {
+        throw new UserError(
+          "Invalid username and/or password",
+          "/login",
+          200
+        );
+      }
+    })
+    .then((passwordMatched) => {
+      if (passwordMatched) {
         successPrint(`User ${username} is logged in.`);
         res.locals.logged = true;
-        res.render('index');
         res.cookie("Logged", username, { expires: new Date(Date.now() + 900000), httpOnly: false });
         res.cookie("isLogged", "true", { expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
         res.redirect('/');
       } else {
         throw new UserError(
-          "Invalid username and/or password",
+          "Invalid password",
           "/login",
           200
         );
