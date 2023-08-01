@@ -4,6 +4,9 @@ const favicon = require('serve-favicon');
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const session = require("express-session");
+var mySQLSession = require("express-mysql-session")(session);
+
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -26,6 +29,18 @@ app.engine(
   })
 );
 
+var mySQLSessionStore = new mySQLSession(
+  {/* using default options */ },
+  require('./config/database')
+);
+app.use(session({
+  key: "csid",
+  secret: "the matrix has you",
+  store: mySQLSessionStore,
+  resave: true, // resave session vars, true can cause race conditions
+  saveUninitialized: false // do not save empty values in session vars
+}));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -40,8 +55,15 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 // route middleware from ./helpers/debug/debugprinters.js
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   requestPrint(req.url);
+  next();
+});
+
+app.use((req, res, next) => {
+  if (req.session.username) {
+    res.locals.logged = true;
+  }
   next();
 });
 
@@ -49,15 +71,14 @@ app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use("/sampadb", dbRouter);
 
-
 /**
  * Catch all route, if we get to here then the 
  * resource requested could not be found.
  */
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   next(createError(404, `The route ${req.method} : ${req.url} does not exist.`));
 })
-  
+
 
 /**
  * Error Handler, used to render the error html file
@@ -75,4 +96,4 @@ app.use(function (err, req, res, next) {
   // res.render("error", {err_message: err});
 });
 
-module.exports = app;
+module.exports = app; 

@@ -8,8 +8,7 @@ const pool = mysql.createPool({
     database: 'sampadb',
     connectionLimit: 50,
     waitForConnections: true,
-    // debug is for verbose logging
-    debug: true,
+    debug: false, // debug is for verbose logging
 });
 
 const promisePool = pool.promise();

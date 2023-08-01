@@ -81,11 +81,13 @@ router.post('/login', (req, res, next) => {
 
   /* TODO: Server-side validation */
 
-  let baseSQL = 'SELECT username, password FROM users WHERE username=?';
+  let baseSQL = 'SELECT id, username, password FROM users WHERE username=?';
+  let userID;
   db.execute(baseSQL, [username])
     .then(([results, fields]) => {
       if (results && results.length == 1) {
         let hashedPassword = results[0].password;
+        userID = results[0].id;
         return bcrypt.compare(password, hashedPassword);
       } else {
         throw new UserError(
@@ -98,6 +100,10 @@ router.post('/login', (req, res, next) => {
     .then((passwordMatched) => {
       if (passwordMatched) {
         successPrint(`User ${username} is logged in.`);
+        req.session.username = username;
+        req.session.userID = userID;
+        res.locals.logged = true;
+        console.log(req.session);
         res.locals.logged = true;
         res.cookie("Logged", username, { expires: new Date(Date.now() + 900000), httpOnly: false });
         res.cookie("isLogged", "true", { expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
