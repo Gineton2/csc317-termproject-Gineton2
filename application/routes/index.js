@@ -10,16 +10,16 @@ router.get('/home', function(req, res, next) {
   res.render('home', {title:"Home"});
 });
 
-router.get('/imagepost', function(req, res, next) {
-  res.render('imagepost', {title:"Image Post"});
+router.get('/image-post', function(req, res, next) {
+  res.render('image-post', {title:"Image Post"});
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', {title:"Login"});
+router.get('/log-in', function(req, res, next) {
+  res.render('log-in', {title:"Log In"});
 });
 
-router.get('/postimage', function(req, res, next) {
-  res.render('postimage', {title:"Post Image"});
+router.get('/post-image', function(req, res, next) {
+  res.render('post-image', {title:"Post Image"});
 });
 
 router.get('/registration', function(req, res, next) {
