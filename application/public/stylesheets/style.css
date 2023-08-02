@@ -188,12 +188,23 @@ footer p, footer a {
   justify-content: center;
 }
 
+@media (min-width: 800px) {
+  #view-image-post {
+    width: 80%;
+    margin: auto;
+  }
+}
+
 @media (min-width: 1080px) {
   #image-posts {
     grid-template-columns: repeat(
       auto-fill,
       minmax(25%, 1fr)
     ); /* max 4 items */
+  }
+  #view-image-post {
+    width: 70%;
+    margin: auto;
   }
 }
 
@@ -203,5 +214,9 @@ footer p, footer a {
       auto-fill,
       minmax(20%, 1fr)
     ); /* max 5 items */
+  }
+  #view-image-post {
+    width: 60%;
+    margin: auto;
   }
 }
