@@ -1,20 +1,20 @@
 <!--
-    ❖ login.hbs – for users to log in
+    ❖ log-in.hbs – for users to log in
       ▪ Must have document title.
       ▪ Must have a section heading introducing the form.
       ▪ Input fields are REQUIRED to be in form tags.
       ▪ Must ask user to input a username.
       ▪ Must ask user to input a password.
         • Password input must be correct input type (i.e. when I type I should not see the password).
-      ▪ Must have the user click a submit button to submit login form.
+      ▪ Must have the user click a submit button to submit log-in form.
   -->
 <div class="container">
-  <h1 class="title">Login:</h1>
-  <form id="login-form" class="form-container" method="POST" action="/users/login" enctype="application/x-www-form-urlencoded">
+  <h1 class="title">Log In:</h1>
+  <form id="log-in-form" class="form-container" method="POST" action="/users/log-in" enctype="application/x-www-form-urlencoded">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required minlength="2" />
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required minlength="8" />
-    <input type="submit" value="Login" />
+    <input type="submit" value="Log In" />
   </form>
 </div>

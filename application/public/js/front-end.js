@@ -1,10 +1,10 @@
-/* TODO: Implement navbar with login/logout button */
+/* TODO: Implement full navbar */
 if (document.cookie.includes('logged')){
-    let ele = document.getElementById('login');
+    let ele = document.getElementById('log-in');
     ele.innerHTML = 'Log Out';
-    ele.setAttribute('href', '/logout');
+    ele.setAttribute('href', '/log-out');
 } else {
-    let ele = document.getElementById('login');
+    let ele = document.getElementById('log-in');
     ele.innerHTML = 'Log In';
-    ele.setAttribute('href', '/login');
+    ele.setAttribute('href', '/log-in');
 }

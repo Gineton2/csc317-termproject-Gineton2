@@ -8,11 +8,6 @@ const UserError = require('../helpers/error/UserError');
 
 var bcrypt = require('bcrypt');
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
-
 /* Registration */
 router.post('/register', (req, res, next) => {
   let email = req.body.email;
@@ -53,7 +48,8 @@ router.post('/register', (req, res, next) => {
     .then(([results, fields]) => {
       if (results && results.affectedRows) {
         successPrint("users.js -> User was created");
-        res.redirect('/login');
+        req.flash("success", 'User account was successfully created.');
+        res.redirect('/log-in');
       } else {
         throw new UserError(
           "Server Error. User could not be created",
@@ -66,6 +62,7 @@ router.post('/register', (req, res, next) => {
       errorPrint("user could not be created", err);
       if (err instanceof UserError) {
         errorPrint(err.getMessage());
+        req.flash("error", err.getMessage());
         res.status(err.getStatus());
         res.redirect(err.getRedirectURL());
       } else {
@@ -74,8 +71,8 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-/* Login */
-router.post('/login', (req, res, next) => {
+/* Log-in */
+router.post('/log-in', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 
@@ -92,7 +89,7 @@ router.post('/login', (req, res, next) => {
       } else {
         throw new UserError(
           "Invalid username and/or password",
-          "/login",
+          "/log-in",
           200
         );
       }
@@ -103,32 +100,33 @@ router.post('/login', (req, res, next) => {
         req.session.username = username;
         req.session.userID = userID;
         res.locals.logged = true;
-        console.log(req.session);
-        res.locals.logged = true;
+        // console.log(req.session);
         res.cookie("Logged", username, { expires: new Date(Date.now() + 900000), httpOnly: false });
         res.cookie("isLogged", "true", { expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
+        req.flash("success", "You have successfully logged in!");
         res.redirect('/');
       } else {
         throw new UserError(
           "Invalid password",
-          "/login",
+          "/log-in",
           200
         );
       }
     })
     .catch((err) => {
-      errorPrint("user login failed", err);
+      errorPrint("User log-in failed", err);
       if (err instanceof UserError) {
         errorPrint(err.getMessage());
+        req.flash("error", err.getMessage());
         res.status(err.getStatus());
-        res.redirect('/login');
+        res.redirect('/log-in');
       } else {
         next(err);
       }
     });
 });
 
-router.post("/logout", (req, res, next) => {
+router.post("/log-out", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       errorPrint("Session could not be destroyed.");

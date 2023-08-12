@@ -5,7 +5,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
-var mySQLSession = require("express-mysql-session")(session);
+const mySQLSession = require("express-mysql-session")(session);
+const flash = require("express-flash");
 
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
@@ -37,9 +38,11 @@ app.use(session({
   key: "csid",
   secret: "the matrix has you",
   store: mySQLSessionStore,
-  resave: true, // resave session vars, true can cause race conditions
+  resave: false, // resave session vars, true can cause race conditions
   saveUninitialized: false // do not save empty values in session vars
 }));
+
+app.use(flash());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -61,6 +64,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
+  console.log(req.session);
   if (req.session.username) {
     res.locals.logged = true;
   }
