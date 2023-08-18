@@ -1,10 +1,24 @@
-/* TODO: Implement full navbar */
-if (document.cookie.includes('logged')){
-    let ele = document.getElementById('log-in');
-    ele.innerHTML = 'Log Out';
-    ele.setAttribute('href', '/log-out');
-} else {
-    let ele = document.getElementById('log-in');
-    ele.innerHTML = 'Log In';
-    ele.setAttribute('href', '/log-in');
+function setFlashMessageFadeOut() {
+    let flashMessageElement = document.getElementById("flash-message");
+    if (flashMessageElement) {
+        setTimeout(() => {
+            let curentOpacity = 1.0;
+            let timer = setInterval(() => {
+                if (curentOpacity < 0.05) {
+                    clearInterval(timer);
+                    flashMessageElement.remove();
+                }
+                curentOpacity -= 0.05;
+                flashMessageElement.style.opacity = curentOpacity;
+            }, 50);
+        }, 2500);
+    }
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setFlashMessageFadeOut);
+} else {
+    setFlashMessageFadeOut();
+}
+
+

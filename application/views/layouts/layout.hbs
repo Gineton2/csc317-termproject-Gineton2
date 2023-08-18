@@ -19,9 +19,12 @@
       type="image/ico"
     />
     <link rel="stylesheet" href="/public/stylesheets/style.css" />
+    <script defer src="public/js/front-end.js"></script>
   </head>
   <body>
     {{> header}}
+    {{!-- TODO: emptyObject flash-message helper not working properly --}}
+    {{!-- {{#if (emptyObject messages)}} --}}
     {{#if messages}}
     {{> flash-message}}
     {{/if}}
