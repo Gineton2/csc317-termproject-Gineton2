@@ -18,12 +18,51 @@ const storage = multer.diskStorage({
     }
 });
 
-var uploader = multer({storage: storage});
+var uploader = multer({ storage: storage });
 
 
 router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
-    console.log(req);
-    res.send("Post created");
+    let imageUploaded = req.file.path;
+    let imageAsThumbnail = `thumbnail-${req.file.filename}`;
+    let destinationOfThumbnail = req.file.destination + "/" + imageAsThumbnail;
+    let title = req.body.title;
+    let description = req.body.description;
+    let fk_userID = req.session.userID;
+
+    /*     TODO: server validation (eg express validator)
+        if insert statement values are undefinedd, mysql. will fail
+        with: BIND parameters cannot be undefined */
+
+    sharp(imageUploaded)
+        .resize(200)
+        .toFile(destinationOfThumbnail)
+        .then(() => {
+            const baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUES (?, ?, ?, ?, now(), ?)';
+            console.log(baseSQL, [title, description, imageUploaded, destinationOfThumbnail, fk_userID]);
+            return db.execute(baseSQL, [title, description, imageUploaded, destinationOfThumbnail, fk_userID]);
+        })
+        .then(([results, fields]) => {
+            if (results && results.affectedRows) {
+                req.flash('success', 'Your post was created successfully!');
+                res.redirect('/'); //TODO: (optional) route to individually created post
+            } else {
+                throw new PostError(
+                    "Post could not be created",
+                    "/post-image",
+                    500
+                );
+            }
+        })
+        .catch((err) => {
+            if (err instanceof PostError){
+                errorPrint(err.getMessage());
+                req.flash('error', err.getMessage());
+                res.status(err.getStatus());
+                res.redirect(err.getRedirectURL());
+            } else {
+                next(err);
+            }
+        })
 });
 
 module.exports = router;
