@@ -16,7 +16,7 @@
     class="form-container"
     method="POST"
     enctype="multipart/form-data"
-    action="/posts/createPost"
+    {{!-- action="/posts/createPost" --}}
   >
 
     <label for="post-title">Post Title:</label>
@@ -57,3 +57,43 @@
     <input type="submit" id="submit-image" value="Post Image" />
   </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // const axios = require('axios');
+
+  const _form = document.getElementById('post-image-form');
+  _form.onsubmit = function(event) {
+    event.preventDefault();
+    let _body = new FormData(_form);
+
+    /* TODO: choose between redirect, fetch, or axios
+    {{!-- fetch("/posts/createPost", {
+      method: "POST",
+      body: _body
+    })
+    .then((data) => {
+      console.log(data);
+      return data.json();
+    })
+    .then((dataAsObject) => {
+      console.log(dataAsObject);
+      alert(dataAsObject.message);
+      location.replace(dataAsObject.redirect);
+    })
+    .catch((err) => {
+      console.log(err);
+    }) --}}
+    */
+
+    axios.post("/posts/createPost", _body)
+    .then((data) => {
+      let dataAsObject = data.data;
+      console.log(dataAsObject);
+      //alert(dataAsObject.message);
+      location.replace(dataAsObject.redirect);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+</script>

@@ -43,18 +43,21 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
         })
         .then(([results, fields]) => {
             if (results && results.affectedRows) {
-                req.flash('success', 'Your post was created successfully!');
-                res.redirect('/'); //TODO: (optional) route to individually created post
+                req.flash('success', 'Your post was created successfully.');
+                // res.redirect('/'); //TODO: (optional) route to individually created post
+                res.json({ status: "OK", "redirect": "/" });
             } else {
-                throw new PostError(
-                    "Post could not be created",
-                    "/post-image",
-                    500
-                );
+                // throw new PostError(
+                //     "Post could not be created",
+                //     "/post-image",
+                //     500
+                // );
+                req.flash('error', 'Your post could not be created.');
+                res.json({ status: "ERROR", "redirect": "/post-image" });
             }
         })
         .catch((err) => {
-            if (err instanceof PostError){
+            if (err instanceof PostError) {
                 errorPrint(err.getMessage());
                 req.flash('error', err.getMessage());
                 res.status(err.getStatus());
