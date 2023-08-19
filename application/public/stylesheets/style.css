@@ -162,12 +162,13 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: baseline;
   margin: .5rem;
 }
 #navbar>a{
   border-right: 1px solid var(--color-delta);
   flex-grow: 2;
+  text-decoration: none;
 }
 #navbar>a:last-child{
   border-right: none;

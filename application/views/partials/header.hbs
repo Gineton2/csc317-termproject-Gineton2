@@ -3,6 +3,7 @@
     <a href="/" id="logo">Sampa</a>
     <!-- TODO: refactor log in button to a navbar partial -->
     {{#if logged}}
+      <a href="/post-image" id="post-image-button">Post Image</a>
       <a
         id="log-out-button"
         method="POST"
@@ -10,6 +11,7 @@
         enctype="application/x-www-form-urlencoded"
       >Log Out</a>
     {{else}}
+      <a id="registration-button" href="/registration">Register</a>
       <a id="log-in-button" href="/log-in" id="log-in-button">Log In</a>
     {{/if}}
   </div>
