@@ -13,4 +13,16 @@ routeProtectors.userIsLoggedIn = function (req, res, next) {
     }
 }
 
+routeProtectors.userIsNotLoggedIn = function (req, res, next) {
+    if (!req.session.username) {
+        successPrint("User is not logged in.");
+        next();
+    } else {
+        errorPrint("User is logged in.");
+        req.flash("error", "You have already registered and logged in.");
+        res.redirect("/");
+    }
+}
+
+
 module.exports = routeProtectors;
