@@ -15,5 +15,7 @@
     -->
 <p id="items-count"></p>
 <div id="image-posts">
+    {{#each results}}
+        {{> post-card this}}
+    {{/each}}
 </div>
-<script defer src="public/js/photos.js"></script>
