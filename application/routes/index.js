@@ -5,6 +5,8 @@ var isNotLoggedIn = require('../middleware/route-protectors').userIsNotLoggedIn;
 
 var getRecentPosts = require('../middleware/posts-middleware').getRecentPosts;
 
+var getPostDetails = require('../middleware/posts-middleware').getPostDetails;
+
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {
   res.render('home', {title:"Home"});
@@ -13,8 +15,8 @@ router.get('/', getRecentPosts, function(req, res, next) {
 router.get('/home', function(req, res, next) {
   res.render('home', {title:"Home"});
 });
-
-router.get('/post-details', function(req, res, next) {
+``
+router.get('/post-details/:id(\\d+)', getPostDetails, function(req, res, next) {
   res.render('post-details', {title:"Post Details"});
 });
 
@@ -31,5 +33,7 @@ router.use('/registration', isNotLoggedIn);
 router.get('/registration', function(req, res, next) {
   res.render('registration', {title:"Registration"});
 });
+
+
 
 module.exports = router;
