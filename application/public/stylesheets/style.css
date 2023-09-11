@@ -166,7 +166,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: stretch;
+  align-items: center;
   margin: 0.5rem;
 }
 
@@ -185,15 +185,17 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  margin: .5rem;
+  /* margin: .5rem; */
   border-radius: 3px;
+  max-width: 584px;
+  margin: 0 auto;
 }
 
 #search-input, #search-button {
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
-  border: 1px solid var(--color-delta);
+  border: 1.5px solid var(--color-delta);
   height: 2rem;
 }
 
@@ -201,6 +203,19 @@ a:hover {
   width: 85%;
   border-radius: 3px 0 0 3px;
   border-right: none;
+  margin-bottom: 8px;
+  line-height: 22px;
+}
+
+#search-input:focus {
+  outline: none;
+  border: 2px solid var(--color-epsilon);
+}
+#search-input:hover {
+  border: 2px solid var(--color-epsilon);
+}
+#search-input:active {
+  border: 2px solid var(--color-epsilon);
 }
 
 #search-button {
@@ -213,6 +228,9 @@ a:hover {
   border-radius: 0 3px 3px 0;
   text-align: center;
   border-left: none;
+}
+#search-button:hover {
+  color: var(--color-epsilon);
 }
 
 .alert {
