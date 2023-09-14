@@ -185,7 +185,6 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  /* margin: .5rem; */
   border-radius: 3px;
   max-width: 584px;
   margin: 0 auto;
@@ -263,14 +262,13 @@ footer a {
   padding: 0.5rem 0;
 }
 
-/* // image-posts  */
 .image-post-container {
   min-width: 1rem;
   background-color: var(--c);
   padding: 0.5rem;
   border: 2px solid var(--color-delta);
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
   margin: calc(0.1rem + 0.5vw);
   transition: opacity 0.5s;
 }
