@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
 var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
-
+const UserModel = require('../models/Users');
 const UserError = require('../helpers/error/UserError');
 
 var bcrypt = require('bcrypt');
@@ -13,49 +12,41 @@ router.post('/register', (req, res, next) => {
   let email = req.body.email;
   let username = req.body.username;
   let password = req.body.password;
-  // let passwordConfirmation = req.body.passwordConfirmation;
 
-  /* TODO: server-side validation */
-
-  db.execute('SELECT * FROM users WHERE email=?', [email])
-    .then(([results, fields]) => {
-      if (results && results.length == 0) {
-        // email is available, check if username is available
-        return db.execute('SELECT * FROM users WHERE username=?', [username])
-      } else {
+  UserModel.usernameExists(username)
+    .then((usernameExists) => {
+      if (usernameExists) {
         throw new UserError(
           "Registration Failed: Email already exists",
           "/registration",
           200
         );
+      } else {
+        return UserModel.emailExists(email);
       }
     })
-    .then(([results, fields]) => {
-      if (results && results.length == 0) {
-        return bcrypt.hash(password, 11);
-      } else {
+    .then((emailExists) => {
+      if (emailExists) {
         throw new UserError(
           "Registration Failed: Username already exists",
           "/registration",
           200
         );
+      } else {
+        return UserModel.create(username, password, email);
       }
     })
-    .then((hashedPassword) => {
-      let baseSQL = 'INSERT INTO users (username, email, password, created) VALUES (?, ?, ?, now())';
-      return db.execute(baseSQL, [username, email, hashedPassword]);
-    })
-    .then(([results, fields]) => {
-      if (results && results.affectedRows) {
-        successPrint("users.js -> User was created");
-        req.flash("success", 'User account was successfully created.');
-        res.redirect('/log-in');
-      } else {
+    .then((createdUserId) => {
+      if (createdUserId < 0) {
         throw new UserError(
           "Server Error. User could not be created",
           "/registration",
           500
         );
+      } else {
+        successPrint("users.js -> User was created");
+        req.flash("success", 'User account was successfully created.');
+        res.redirect('/log-in');
       }
     })
     .catch((err) => {
@@ -69,6 +60,7 @@ router.post('/register', (req, res, next) => {
         next(err);
       }
     });
+  /* TODO: server-side validation */
 });
 
 /* Log-in */
@@ -78,31 +70,18 @@ router.post('/log-in', (req, res, next) => {
 
   /* TODO: Server-side validation */
 
-  let baseSQL = 'SELECT id, username, password FROM users WHERE username=?';
-  let userID;
-  db.execute(baseSQL, [username])
-    .then(([results, fields]) => {
-      if (results && results.length == 1) {
-        let hashedPassword = results[0].password;
-        userID = results[0].id;
-        return bcrypt.compare(password, hashedPassword);
-      } else {
-        throw new UserError(
-          "Invalid username and/or password",
-          "/log-in",
-          200
-        );
-      }
-    })
-    .then((passwordMatched) => {
-      if (passwordMatched) {
+  UserModel.authenticate(username, password)
+    .then((loggedUserId) => {
+      if (loggedUserId > 0) {
         successPrint(`User ${username} is logged in.`);
         req.session.username = username;
-        req.session.userID = userID;
+        req.session.userID = loggedUserId;
         res.locals.logged = true;
         // console.log(req.session);
+
         res.cookie("Logged", username, { expires: new Date(Date.now() + 900000), httpOnly: false });
         res.cookie("isLogged", "true", { expires: new Date(Date.now() + 900000), httpOnly: false }); /* httpOnly false: accessible from frontend */
+
         req.flash("success", "You have successfully logged in!");
         res.redirect('/');
       } else {
@@ -126,6 +105,7 @@ router.post('/log-in', (req, res, next) => {
     });
 });
 
+/* Log-out */
 router.post("/log-out", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
