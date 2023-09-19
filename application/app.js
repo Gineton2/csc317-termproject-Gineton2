@@ -70,7 +70,6 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  console.log(req.session);
   if (req.session.username) {
     res.locals.logged = true;
   }
@@ -99,7 +98,6 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = err;
   errorPrint(err);
-  console.log(err);
   // render the error page
   res.status(err.status || 500);
   // res.send("Database error.")

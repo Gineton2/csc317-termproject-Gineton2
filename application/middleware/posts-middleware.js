@@ -1,3 +1,4 @@
+const {getNRecentPosts, getPostDetailsById} = require('../models/Posts');
 var PostModel = require('../models/Posts');
 var db = require('../config/database');
 const postsMiddleware = {};
@@ -5,7 +6,7 @@ const postsMiddleware = {};
 
 postsMiddleware.getRecentPosts = async function(req, res, next) {
     try {
-        let results = await PostModel.getNRecentPosts(8);
+        let results = await getNRecentPosts(8);
         res.locals.results = results;
         if (results.length == 0) {
             req.flash('error', 'No posts have been created.');
@@ -18,25 +19,21 @@ postsMiddleware.getRecentPosts = async function(req, res, next) {
 
 
 // :id is a route parameter, note anything may be accepted as a parameter, so we use regex to limit it to only numbers
-postsMiddleware.getPostDetails = (req, res, next) => {
-    let baseSQL = 
-        "SELECT p.id, p.title, p.description, p.photopath, DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
-        u.username FROM posts p INNER JOIN users u \
-        ON p.fk_user_id = u.id WHERE p.id = ?";
-    let postId = req.params.id;
-    db.execute(baseSQL, [postId]).
-        then(([results, fields]) => {
-            res.locals.results = results;
-            post = results[0];
-            if (results && results.length) {
-                results[0].photopath = '/' + results[0].photopath; // add leading slash to photopath; database does not store leading slash
-                res.render('post-details', { currentPost: post });
-            } else {
-                req.flash('error', "Post not found!");
-                res.redirect('/');
-            }
-        })
-        .catch((err) => next(err));
+postsMiddleware.getPostDetailsById = async function(req, res, next) {
+    try {
+        let postId = req.params.id;
+        let results = await getPostDetailsById(postId);
+        if (results && results.length) {
+            results[0].photopath = '/' + results[0].photopath; // add leading slash to photopath; database does not store leading slash
+            res.locals.currentPost = results[0];
+            next();
+        } else {
+            req.flash('error', "Post not found!");
+            res.redirect('/');
+        }
+    } catch (error) {
+        next(err);
+    }
 };
 
 module.exports = postsMiddleware;
