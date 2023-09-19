@@ -22,7 +22,7 @@ postsMiddleware.getPostDetails = (req, res, next) => {
     let baseSQL = 
         "SELECT p.id, p.title, p.description, p.photopath, DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
         u.username FROM posts p INNER JOIN users u \
-        ON p.fk_userid = u.id WHERE p.id = ?";
+        ON p.fk_user_id = u.id WHERE p.id = ?";
     let postId = req.params.id;
     db.execute(baseSQL, [postId]).
         then(([results, fields]) => {

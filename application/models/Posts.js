@@ -2,7 +2,7 @@ var db = require('../config/database');
 const PostModel = {};
 
 PostModel.create = (title, description, imageUploaded, destinationOfThumbnail, fk_userId) => {
-    const baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUES (?, ?, ?, ?, now(), ?)';
+    const baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_user_id) VALUES (?, ?, ?, ?, now(), ?)';
     return db.execute(baseSQL, [title, description, imageUploaded, destinationOfThumbnail, fk_userId])
         .then(([results, fields]) => {
             return Promise.resolve(results && results.affectedRows);
@@ -29,7 +29,7 @@ PostModel.getNRecentPosts = (numPosts) => {
     let baseSQL =
         "SELECT p.id, p.title, p.description, p.thumbnail, \
         DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
-        u.username FROM posts p INNER JOIN users u ON p.fk_userid = u.id \
+        u.username FROM posts p INNER JOIN users u ON p.fk_user_id = u.id \
         ORDER BY p.created DESC LIMIT ?;";
     return db.execute(baseSQL, [numPostsString])
         .then(([results, fields]) => {
