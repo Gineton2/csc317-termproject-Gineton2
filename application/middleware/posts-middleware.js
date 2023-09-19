@@ -1,22 +1,21 @@
+var PostModel = require('../models/Posts');
 var db = require('../config/database');
 const postsMiddleware = {};
 
-postsMiddleware.getRecentPosts = (req, res, next) => {
-    let baseSQL = 
-        "SELECT p.id, p.title, p.description, p.thumbnail, \
-        DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
-        u.username FROM posts p INNER JOIN users u ON p.fk_userid = u.id \
-        ORDER BY created_formatted DESC LIMIT 8";
-    db.execute(baseSQL, [])
-        .then(([results, fields]) => {
-            res.locals.results = results;
-            if (results && results.length == 0) {
-                req.flash('error', 'No posts have been created.');
-            }
-            next();
-        })
-        .catch((err) => next(err));
-};
+
+postsMiddleware.getRecentPosts = async function(req, res, next) {
+    try {
+        let results = await PostModel.getNRecentPosts(8);
+        res.locals.results = results;
+        if (results.length == 0) {
+            req.flash('error', 'No posts have been created.');
+        }
+        next();
+    } catch(err) {
+        next(err);
+    }
+}
+
 
 // :id is a route parameter, note anything may be accepted as a parameter, so we use regex to limit it to only numbers
 postsMiddleware.getPostDetails = (req, res, next) => {

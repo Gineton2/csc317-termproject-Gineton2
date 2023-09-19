@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
 const { successPrint, errorPrint } = require("../helpers/debug/debugprinters");
 const sharp = require('sharp');
 const multer = require('multer');
 const crypto = require('crypto');
+const PostModel = require('../models/Posts');
 const PostError = require('../helpers/error/PostError');
 
 const storage = multer.diskStorage({
@@ -27,7 +27,7 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
     let destinationOfThumbnail = req.file.destination + "/" + imageAsThumbnail;
     let title = req.body.title;
     let description = req.body.description;
-    let fk_userID = req.session.userID;
+    let fk_userId = req.session.userID;
 
     /*     TODO: server validation (eg express validator)
         if insert statement values are undefinedd, mysql. will fail
@@ -37,12 +37,10 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
         .resize(200)
         .toFile(destinationOfThumbnail)
         .then(() => {
-            const baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUES (?, ?, ?, ?, now(), ?)';
-            console.log(baseSQL, [title, description, imageUploaded, destinationOfThumbnail, fk_userID]);
-            return db.execute(baseSQL, [title, description, imageUploaded, destinationOfThumbnail, fk_userID]);
+            return PostModel.create(title, description, imageUploaded, destinationOfThumbnail, fk_userId);
         })
-        .then(([results, fields]) => {
-            if (results && results.affectedRows) {
+        .then((postWasCreated) => {
+            if (postWasCreated) {
                 req.flash('success', 'Your post was created successfully.');
                 // res.redirect('/'); //TODO: (optional) route to individually created post
                 res.json({ status: "OK", "redirect": "/" });
@@ -50,7 +48,7 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
                 // throw new PostError(
                 //     "Post could not be created",
                 //     "/post-image",
-                //     500
+                //     200
                 // );
                 req.flash('error', 'Your post could not be created.');
                 res.json({ status: "ERROR", "redirect": "/post-image" });
@@ -74,31 +72,19 @@ router.get('/search', async (req, res, next) => {
         let searchQuery = req.query.search;
         if (!searchQuery) {
             res.send({
-                resultStatus: "info",
                 message: "No search term given",
                 results: []
             });
         } else {
-            let baseSQL = "SELECT id, title, description, thumbnail, \
-        concat_ws(' ', title, description) AS posts_haystack \
-        FROM posts \
-        HAVING posts_haystack LIKE ?;";
-            let sqlReadySearchQuery = "%" + searchQuery + "%";
-            let [results, fields] = await db.execute(baseSQL, [sqlReadySearchQuery])
+            let results = await PostModel.search(searchQuery);
             if (results && results.length) {
                 res.send({
-                    resultsStatus: "info",
                     message: `${results.length} results found`,
                     results: results
                 });
             } else {
-                let [results, fields] = await db.query(
-                    'SELECT id, title, description, thumbnail, created \
-                        FROM posts \
-                        ORDER BY created DESC \
-                        LIMIT 8;', [])
+                let results = await PostModel.getNRecentPosts(8);
                 res.send({
-                    resultsStatus: "info",
                     message: "No results found. Here are some recent posts instead!",
                     results: results
                 });
