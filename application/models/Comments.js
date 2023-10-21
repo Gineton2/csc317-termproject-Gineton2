@@ -8,7 +8,7 @@ CommentModel.create = (comment, userId, postId) => {
     return db.query(baseSQL, [comment, userId, postId])
     .then(([results, fields]) => {
         if (results && results.affectedRows) {
-            return Promise.resolve(results.insertId); // note: insertId is the id of the comment that was just created
+            return Promise.resolve(results.insertId); // note: insertId is the id of the comment that was just (most recently) created
         } else {
             return Promise.resolve(-1);
         }
