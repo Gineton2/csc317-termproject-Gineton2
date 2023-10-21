@@ -1,5 +1,4 @@
 var db = require('../config/database');
-const { post } = require('../routes');
 const CommentModel = {};
 
 CommentModel.create = (comment, userId, postId) => {
@@ -18,7 +17,7 @@ CommentModel.create = (comment, userId, postId) => {
 
 CommentModel.getCommentsByPostId = (postId) => {
     let baseSQL = 'SELECT u.username, c.comment, c.created, c.id \
-    FROM comments c JOIN users u on iu.d = fk_author-id \
+    FROM comments c JOIN users u on u.id = fk_author_id \
     WHERE c.fk_post_id = ? \
     ORDER BY c.created DESC;';
     return db.query(baseSQL, [postId])

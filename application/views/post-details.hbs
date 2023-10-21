@@ -1,16 +1,19 @@
-<!--
-imagePost.hbs – for viewing an individual image post
-    ▪ Must have a section for the post’s post title.
-    ▪ Must have a section for the post’s post author
-    ▪ Must have a section for the post’s post creation time. 
-    ▪ Must have a section for the post’s image
--->
 <div id="post-details-view" class="image-post-container">
   <h1 class="title">{{currentPost.title}}</h1>
   <div class="image-container">
   <img class="posted-image" alt="Missing" src="{{currentPost.photopath}}" />
   </div>
   <div class="below-image">
+    <-- TODO: complete comments section -->
+    <div>
+      {{#each currentPost.comments}}  
+        <div class="comment">
+          <p class="comment-author">{{username}}</p>
+          <p class="comment-text">{{comment}}</p>
+        </div>
+      {{/each}}
+      </div>
+      <-- TODO: complete comments section -->
     <div class="post-authorship-info">
         <p class="post-date">{{currentPost.created_formatted}}</p>
         <p class="post-author">{{currentPost.username}}</p>

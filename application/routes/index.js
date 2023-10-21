@@ -3,7 +3,7 @@ var router = express.Router();
 var isLoggedIn = require('../middleware/route-protectors').userIsLoggedIn;
 var isNotLoggedIn = require('../middleware/route-protectors').userIsNotLoggedIn;
 
-var {getRecentPosts, getPostDetailsById} = require('../middleware/posts-middleware');
+var {getRecentPosts, getPostDetailsById, getCommentsByPostId} = require('../middleware/posts-middleware');
 
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {
@@ -14,7 +14,7 @@ router.get('/home', function(req, res, next) {
   res.render('home', {title:"Home"});
 });
 
-router.get('/post-details/:id(\\d+)', getPostDetailsById, /* getCommentsByPostId,*/ (req, res, next) => {
+router.get('/post-details/:id(\\d+)', getPostDetailsById, getCommentsByPostId, (req, res, next) => {
   res.render('post-details', {title:`Post ${req.params.id}`});
 });
 
