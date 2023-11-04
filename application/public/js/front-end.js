@@ -1,5 +1,17 @@
 // const { execute } = require("../../config/database");
 
+function onLoad() {
+    setFlashMessageFadeOut();
+    formatDates();
+}
+
+function formatDates() {
+    document.querySelectorAll(".comment-date, .post-date").forEach((postedDate) => {
+        postedDate.textContent =
+            new Date(postedDate.textContent).toLocaleString();
+    });
+}
+
 function executeSearch() {
     let searchTerm = document.getElementById("search-input").value;
     if (!searchTerm) {
@@ -18,7 +30,8 @@ function executeSearch() {
                 newImagePostsHTML += createCard(row);
             });
             imagePosts.innerHTML = newImagePostsHTML;
-            if (data_json.message){
+            formatDates();
+            if (data_json.message) {
                 addFlashFromFrontEnd(data_json.message);
             }
         })
@@ -76,10 +89,10 @@ function setFlashMessageFadeOut() {
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setFlashMessageFadeOut);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    onLoad();
 } else {
-    setFlashMessageFadeOut();
+    document.addEventListener('DOMContentLoaded', onLoad);
 }
 
 let searchButton = document.getElementById("search-button");

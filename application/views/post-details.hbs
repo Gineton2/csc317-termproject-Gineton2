@@ -1,23 +1,26 @@
 <div id="post-details-view" class="image-post-container">
   <h1 class="title">{{currentPost.title}}</h1>
   <div class="image-container">
-  <img class="posted-image" alt="Missing" src="{{currentPost.photopath}}" />
+    <img class="posted-image" alt="Missing" src="{{currentPost.photopath}}" />
   </div>
   <div class="below-image">
-    <-- TODO: complete comments section -->
-    <div>
-      {{#each currentPost.comments}}  
-        <div class="comment">
-          <p class="comment-author">{{username}}</p>
-          <p class="comment-text">{{comment}}</p>
-        </div>
-      {{/each}}
-      </div>
-      <-- TODO: complete comments section -->
     <div class="post-authorship-info">
-        <p class="post-date">{{currentPost.created_formatted}}</p>
-        <p class="post-author">{{currentPost.username}}</p>
+      <p class="post-date">{{currentPost.created_formatted}}</p> {{!-- TODO: format date to include time --}}
+      <p class="post-author">{{currentPost.username}}</p>
     </div>
     <p class="post-description">{{currentPost.description}}</p>
+    {{!-- TODO: complete comments section --}}
+    <div class="comments-section">
+      <div class="comments-container">
+        {{#each currentPost.comments}}
+        {{> comment}}
+        {{/each}}
+      </div>
+      <div id="comment-add-container">
+        <textarea id="comment-add-input" placeholder="Add a comment..."></textarea>
+        <button id="comment-add-button" class="button">Comment</button>
+      </div>
+    </div>
   </div>
+  {{!-- TODO: complete comments section --}}
 </div>
