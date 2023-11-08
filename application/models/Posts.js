@@ -27,8 +27,7 @@ PostModel.getNRecentPosts = (numPosts) => {
     // parameter must be parsed as a string
     numPostsString = numPosts.toString();
     let baseSQL =
-        `SELECT p.id, p.title, p.description, p.thumbnail, \
-        DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
+        `SELECT p.id, p.title, p.description, p.thumbnail, p.created, \
         u.username FROM posts p INNER JOIN users u ON p.fk_user_id = u.id \
         ORDER BY p.created DESC LIMIT ?;`;
     return db.execute(baseSQL, [numPostsString])
@@ -40,7 +39,7 @@ PostModel.getNRecentPosts = (numPosts) => {
 
 PostModel.getPostDetailsById = (postId) => {
     let baseSQL = 
-    "SELECT p.id, p.title, p.description, p.photopath, DATE_FORMAT(p.created, '%m/%d/%Y') AS created_formatted, \
+    "SELECT p.id, p.title, p.description, p.photopath, p.created, \
     u.username FROM posts p INNER JOIN users u \
     ON p.fk_user_id = u.id WHERE p.id = ?;";
     return db.execute(baseSQL, [postId])
