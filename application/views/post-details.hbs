@@ -5,22 +5,20 @@
   </div>
   <div class="below-image">
     <div class="post-authorship-info">
-      <p class="post-date">{{currentPost.created}}</p> {{!-- TODO: format date to include time --}}
+      <p class="post-date">{{currentPost.created}}</p>
       <p class="post-author">{{currentPost.username}}</p>
     </div>
     <p class="post-description">{{currentPost.description}}</p>
-    {{!-- TODO: complete comments section --}}
-    <div class="comments-section">
-      <div class="comments-container">
+    <div id="comments-section">
+      <div id="comments-container">
         {{#each currentPost.comments}}
         {{> comment}}
         {{/each}}
       </div>
       <div id="comment-add-container">
-        <textarea id="comment-add-input" placeholder="Add a comment..."></textarea>
+        <textarea id="comment-add-textarea" placeholder="Add a comment..."></textarea>
         <button id="comment-add-button" class="button">Comment</button>
       </div>
     </div>
   </div>
-  {{!-- TODO: complete comments section --}}
 </div>

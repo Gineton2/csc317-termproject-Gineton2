@@ -27,7 +27,7 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
     let destinationOfThumbnail = req.file.destination + "/" + imageAsThumbnail;
     let title = req.body.title;
     let description = req.body.description;
-    let fk_userId = req.session.userID;
+    let fk_userId = req.session.userId;
 
     /*     TODO: server validation (eg express validator)
         if insert statement values are undefinedd, mysql. will fail

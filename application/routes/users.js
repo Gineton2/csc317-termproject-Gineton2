@@ -75,7 +75,7 @@ router.post('/log-in', (req, res, next) => {
       if (loggedUserId > 0) {
         successPrint(`User ${username} is logged in.`);
         req.session.username = username;
-        req.session.userID = loggedUserId;
+        req.session.userId = loggedUserId;
         res.locals.logged = true;
         // console.log(req.session);
 
