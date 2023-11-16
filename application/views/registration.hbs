@@ -49,6 +49,7 @@
       name="password"
       placeholder="8 characters minimum"
       required
+      autocomplete="new-password"
     />
     <label for="password-confirmation-registration">Confirm Password:</label>
     <span class="error" id="password-confirmation-error"></span>
@@ -58,15 +59,16 @@
       name="passwordConfirmation"
       placeholder="Confirm password"
       required
+      autocomplete="new-password"
     />
     <div class="checkbox-prompt-container">
       <label for="age-check">Are you 13 years of age or older?</label>
-      <input type="checkbox" id="age-check" name="age-check" required />
+      <input type="checkbox" id="age-check" name="age-check" value="checked" required />
     </div>
     <div class="checkbox-prompt-container">
       <label for="TOS-check">Do you agree to our
         <a href="fake-tos.sfsu.edu">Terms of Service</a>?</label>
-      <input type="checkbox" id="TOS-check" name="TOS-check" required />
+      <input type="checkbox" id="TOS-check" name="TOS-check" value="checked" required />
     </div>
     <input type="submit" id="submit-registration" value="Register" />
   </form>

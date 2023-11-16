@@ -23,8 +23,6 @@
   </head>
   <body>
     {{> header}}
-    {{!-- TODO: emptyObject flash-message helper not working properly --}}
-    {{!-- {{#if (emptyObject messages)}} --}}
     {{#if messages}}
     {{> flash-message}}
     {{/if}}

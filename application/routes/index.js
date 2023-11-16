@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var isLoggedIn = require('../middleware/route-protectors').userIsLoggedIn;
-var isNotLoggedIn = require('../middleware/route-protectors').userIsNotLoggedIn;
+const express = require('express');
+const router = express.Router();
+const isLoggedIn = require('../middleware/route-protectors').userIsLoggedIn;
+const isNotLoggedIn = require('../middleware/route-protectors').userIsNotLoggedIn;
 
-var {getRecentPosts, getPostDetailsById, getCommentsByPostId} = require('../middleware/posts-middleware');
+const {getRecentPosts, getPostDetailsById, getCommentsByPostId} = require('../middleware/posts-middleware');
 
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {

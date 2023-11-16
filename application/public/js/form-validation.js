@@ -85,7 +85,7 @@ function validatePassword(){
         validatePasswordUpper() &&
         validatePasswordNumber() &&
         validatePasswordSpecial() &&
-        validatePasswordMatch());
+        validatePasswordConfirmation());
     if (isValid){
         passwordError.textContent = '';
         passwordConfirmationError.textContent = '';
@@ -108,7 +108,7 @@ function validatePasswordUpper(){
     // contains at least 1 upper case letter
     const isValid = password.value.match(/[A-Z]/);
     if (!isValid){
-        passwordError.textContent = 'Password must contain at least 1 upper case letter.';
+        passwordError.textContent = 'Password must contain at least one uppercase letter.';
     } else {
         passwordError.textContent = '';
     }
@@ -130,14 +130,14 @@ function validatePasswordSpecial(){
     // contains at least 1 of the following special characters ( / * - + ! @ # $ ^ & * )
     const isValid = password.value.match(/[\/\*\-\+\!\@\#\$\^\&\*]/);
     if (!isValid){
-        passwordError.textContent = 'Password must contain at least one special character.';
+        passwordError.textContent = 'Password must contain at least one special character ( / * - + ! @ # $ ^ & * ).';
     } else {
         passwordError.textContent = '';
     }
     return isValid;
 }
 
-function validatePasswordMatch(){
+function validatePasswordConfirmation(){
     // require that the password and confirm password inputs are the same. 
     const isValid = password.value === passwordConfirmation.value;
     if (!isValid){

@@ -4,11 +4,11 @@ var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserModel = require('../models/Users');
 const UserError = require('../helpers/error/UserError');
-
+const {validateRegistration, returnValidationErrors} = require('../middleware/validation-middleware');
 var bcrypt = require('bcrypt');
 
 /* Registration */
-router.post('/register', (req, res, next) => {
+router.post('/register', validateRegistration, returnValidationErrors, (req, res, next) => {
   let email = req.body.email;
   let username = req.body.username;
   let password = req.body.password;
@@ -50,7 +50,7 @@ router.post('/register', (req, res, next) => {
       }
     })
     .catch((err) => {
-      errorPrint("user could not be created", err);
+      errorPrint("User could not be created", err);
       if (err instanceof UserError) {
         errorPrint(err.getMessage());
         req.flash("error", err.getMessage());
