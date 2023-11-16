@@ -10,60 +10,75 @@ validationMiddleware.validateEmail = [
         .withMessage('Email must be valid.'),
 ];
 
-validationMiddleware.validateUsername = [
+validationMiddleware.validateRegistrationUsername = [
     body('username')
         .exists()
         .isLength({min: 3})
-            .withMessage('Username must be 3 or more characters.')
+            .withMessage('Username must have three or more characters.')
         .matches(/^[a-zA-Z]/)
-            .withMessage('Username must begin with a letter.'),
+            .withMessage('Username must begin with a letter.')
 ];
 
-validationMiddleware.validatePassword = [
+validationMiddleware.validateRegistrationPassword = [
     body('password')
         .exists()
         .isLength({min: 8})
-            .withMessage('Password must be 8 or more characters.')
+            .withMessage('Password must have eight or more characters.')
         .matches(/[A-Z]/)
             .withMessage('Password must contain at least one uppercase letter.')
         .matches(/[0-9]/)
             .withMessage('Password must contain at least one number.')
         .matches(/[\/\*\-\+\!\@\#\$\^\&\*]/)
             .withMessage('Password must contain at least one special character ( / * - + ! @ # $ ^ & * ).'),
-];
-
-validationMiddleware.validatePasswordConfirmation = [
     body('passwordConfirmation')
         .custom((value, {req}) => value === req.body.password)
             .withMessage('Passwords do not match.')
 ];
 
+validationMiddleware.validateRegistrationAgeCheck = [
+    body('age-check')
+    .exists()
+    .equals("checked")
+        .withMessage('You must be 13 years or older to register.'),
+];
+
+validationMiddleware.validateRegistrationTOSCheck = [
+    body('TOS-check')
+    .exists()
+    .equals("checked")
+        .withMessage('You must agree to the Terms of Service.')
+];
+
 validationMiddleware.validateRegistration = [
     ...validationMiddleware.validateEmail,
-    ...validationMiddleware.validateUsername,
-    ...validationMiddleware.validatePassword,
-    ...validationMiddleware.validatePasswordConfirmation,
-    body('age-check')
-        .exists()
-        .equals("checked")
-            .withMessage('You must be 13 years or older to register.'),
-    body('TOS-check')
-        .exists()
-        .equals("checked")
-            .withMessage('You must agree to the Terms of Service.')
+    ...validationMiddleware.validateRegistrationUsername,
+    ...validationMiddleware.validateRegistrationPassword,
+    ...validationMiddleware.validateRegistrationAgeCheck
 ];
 
 validationMiddleware.validatePost = [
-    
 ];
 
 validationMiddleware.validateSearch = [
 ];
 
 validationMiddleware.validateLogin = [
+    body('username')
+        .exists()
+        .withMessage('Username is required.'),
+    body('password')
+        .exists()
+        .withMessage('Password is required.')
 ];
 
 validationMiddleware.validateComment = [
+    body('comment')
+        .exists()
+        .withMessage('Comment is required.')
+        .isLength({min: 1})
+            .withMessage('Comment must have at least one character.')
+        .matches(/^[a-zA-Z0-9\s\.\,\!\?]+$/)
+            .withMessage('Comment may only contain letters, numbers, spaces, and punctuation.')
 ];
 
 validationMiddleware.returnValidationErrors = (req, res, next) => {
