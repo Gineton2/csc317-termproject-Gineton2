@@ -6,6 +6,7 @@ const multer = require('multer');
 const crypto = require('crypto');
 const PostModel = require('../models/Posts');
 const PostError = require('../helpers/error/PostError');
+const { validatePost, validateSearch, returnValidationErrors } = require('../middleware/validation-middleware');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -21,17 +22,13 @@ const storage = multer.diskStorage({
 var uploader = multer({ storage: storage });
 
 
-router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
+router.post('/createPost', uploader.single("imageUpload"), validatePost, returnValidationErrors, (req, res, next) => {
     let imageUploaded = req.file.path;
     let imageAsThumbnail = `thumbnail-${req.file.filename}`;
     let destinationOfThumbnail = req.file.destination + "/" + imageAsThumbnail;
     let title = req.body.title;
     let description = req.body.description;
     let fk_userId = req.session.userId;
-
-    /*     TODO: server validation (eg express validator)
-        if insert statement values are undefinedd, mysql. will fail
-        with: BIND parameters cannot be undefined */
 
     sharp(imageUploaded)
         .resize(200)
@@ -67,7 +64,7 @@ router.post('/createPost', uploader.single("imageUpload"), (req, res, next) => {
 });
 
 //localhost:3000/posts/search?search=value
-router.get('/search', async (req, res, next) => {
+router.get('/search', validateSearch, returnValidationErrors, async (req, res, next) => {
     try {
         let searchQuery = req.query.search;
         if (!searchQuery) {

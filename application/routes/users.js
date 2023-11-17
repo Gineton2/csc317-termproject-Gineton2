@@ -4,7 +4,7 @@ var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserModel = require('../models/Users');
 const UserError = require('../helpers/error/UserError');
-const {validateRegistration, returnValidationErrors} = require('../middleware/validation-middleware');
+const {validateRegistration, returnValidationErrors, validateLogin} = require('../middleware/validation-middleware');
 var bcrypt = require('bcrypt');
 
 /* Registration */
@@ -64,7 +64,7 @@ router.post('/register', validateRegistration, returnValidationErrors, (req, res
 });
 
 /* Log-in */
-router.post('/log-in', (req, res, next) => {
+router.post('/log-in', validateLogin, returnValidationErrors, (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 

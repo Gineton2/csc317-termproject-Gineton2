@@ -1,4 +1,4 @@
-const {body, validationResult} = require('express-validator');
+const {body, validationResult, query} = require('express-validator');
 const UserError = require('../helpers/error/UserError');
 const validationMiddleware = {};
 
@@ -57,9 +57,40 @@ validationMiddleware.validateRegistration = [
 ];
 
 validationMiddleware.validatePost = [
+    body('title')
+        .trim()
+        .exists()
+        .notEmpty()
+            .withMessage('Title is required.')
+        .isLength({min: 1, max: 300})
+            .withMessage('Title must be between 1 and 300 characters long.'),
+    
+    // shall a description be required to post?
+    body('description')
+        .exists()
+            .withMessage('Description is required.'),
+
+    body('imageUpload')
+        .custom((value, {req}) => {
+            if(!req.file){
+                throw new Error('Image is required.');
+            }
+            const fileExt = path.extname(req.file.originalname).toLowerCase();
+            const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+
+            if (!validExtensions.includes(fileExt)){
+                throw new Error('Image must be a valid image file type: .jpg, .jpeg, .png, .gif');
+            }
+        })
 ];
 
 validationMiddleware.validateSearch = [
+    query('search')
+        .trim()
+        .exists()
+        .withMessage('Search term is required.')
+        .isLength({min: 1, max : 300})
+            .withMessage('Search term must have between one and 300 characters.')
 ];
 
 validationMiddleware.validateLogin = [
@@ -80,14 +111,13 @@ validationMiddleware.validateComment = [
         .matches(/^[a-zA-Z0-9\s\.\,\!\?]+$/)
             .withMessage('Comment may only contain letters, numbers, spaces, and punctuation.')
 ];
-
+// TODO: Currently not functional. Flash messages are not being displayed at the right time or at all.
 validationMiddleware.returnValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         errors.array().forEach(error => {
             req.flash('error', error.msg)
         });
-        res.redirect(req.originalUrl);
     } else {
         next();
     }
