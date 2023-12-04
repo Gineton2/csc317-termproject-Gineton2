@@ -11,10 +11,11 @@ PostModel.create = (title, description, imageUploaded, destinationOfThumbnail, f
 };
 
 PostModel.search = (searchQuery) => {
-    let baseSQL = "SELECT id, title, description, thumbnail, \
-        concat_ws(' ', title, description) AS posts_haystack \
-        FROM posts \
-        HAVING posts_haystack LIKE ?;";
+    let baseSQL = `SELECT \
+        p.id, p.title, p.description, p.thumbnail, p.created, u.username \
+        FROM posts p \
+        JOIN users u ON p.fk_user_id = u.id \
+        WHERE concat_ws(' ', p.title, p.description, u.username) LIKE ?;`;
     let sqlReadySearchQuery = "%" + searchQuery + "%";
     return db.execute(baseSQL, [sqlReadySearchQuery])
     .then(([results, fields]) => {
@@ -22,6 +23,7 @@ PostModel.search = (searchQuery) => {
     })
     .catch((err) => Promise.reject(err));
 }
+
 
 PostModel.getNRecentPosts = (numPosts) => {
     // parameter must be parsed as a string

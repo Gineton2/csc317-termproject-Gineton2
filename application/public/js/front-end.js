@@ -30,10 +30,10 @@ function executeSearch() {
                 newImagePostsHTML += createCard(row);
             });
             imagePosts.innerHTML = newImagePostsHTML;
-            formatDates();
             if (data_json.message) {
                 addFlashFromFrontEnd(data_json.message);
             }
+            formatDates();
         })
 }
 
@@ -74,7 +74,7 @@ function createCard(postData) {
             </div>
             <div class="below-image">
                 <div class="post-authorship-info">
-                    <p class="post-date">${postData.created_formatted}</p>
+                    <p class="post-date">${postData.created}</p>
                     <p class="post-author">${postData.username}</p>
                 </div>
                 <p class="post-description">${postData.description}</p>
