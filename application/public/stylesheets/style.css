@@ -81,7 +81,7 @@ input[type="button"] {
   border: none;
   color: var(--color-delta);
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   transition: background-color 0.3s;
   width: 100%;
   text-align: center;
@@ -101,21 +101,8 @@ a:hover {
   color: var(--color-epsilon);
 }
 
-.title {
-  font-family: "Montserrat", sans-serif;
-  font-size: calc(1rem + 0.5vw);
-  color: var(--color-delta);
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  overflow: auto;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-top: auto;
-}
-
 .below-image {
-  font-family: "Nunito", sans-serif;
-  font-size: calc(0.8rem + 0.5vw);
+  font-size: calc(0.8rem + 0.2vw);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -140,26 +127,33 @@ a:hover {
 .post-author,
 .post-date {
   margin: 0.5rem 0 0.5rem 0;
+  font-size: calc(1rem + 0.2vw);
+  font-weight: 600;
 }
 
 .error {
   color: var(--color-epsilon);
 }
 
+.title {
+  font-size: calc(1rem + 0.5vw);
+  color: var(--color-delta);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  overflow: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: auto;
+}
+
 #flash-message {
   position: fixed;
-  top: 20%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, 0%);
   z-index: 1;
   width: 100%;
   background-color: var(--color-beta);
-}
-
-#logo {
-  text-decoration: none;
-  font-size: 2.5rem;
-  font-weight: bold;
 }
 
 #navbar {
@@ -174,10 +168,18 @@ a:hover {
   border-right: 1px solid var(--color-delta);
   flex-grow: 2;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 #navbar > a:last-child {
   border-right: none;
+}
+
+#navbar > #logo {
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 #search-bar {
@@ -192,13 +194,13 @@ a:hover {
 
 #search-input, #search-button {
   box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
-  font-size: 1rem;
   border: 1.5px solid var(--color-delta);
   height: 2rem;
+  font-family: "Nunito", sans-serif;
 }
 
 #search-input {
+  font-size: 1rem;
   width: 85%;
   border-radius: 3px 0 0 3px;
   border-right: none;
@@ -221,12 +223,14 @@ a:hover {
   background-color: var(--color-beta);
   color: var(--color-delta);
   cursor: pointer;
+  font-size: 1.1rem;
   font-weight: bold;
   transition: background-color 0.3s;
   width: 15%;
   border-radius: 0 3px 3px 0;
   text-align: center;
   border-left: none;
+  min-width: 5rem;
 }
 #search-button:hover {
   color: var(--color-epsilon);
@@ -263,7 +267,7 @@ footer a {
 }
 
 .image-post-container {
-  min-width: 1rem;
+  min-width: 300px;
   background-color: var(--c);
   padding: 0.5rem;
   border: 2px solid var(--color-delta);
@@ -284,6 +288,16 @@ footer a {
   padding-bottom: 100%;
   position: relative;
 }
+
+.post-description {
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+#comments-header {
+  font-weight: 600;
+  font-size: calc(1rem + 0.1vw);
+}
+
 
 #items-count {
   font-family: "Nunito", sans-serif;

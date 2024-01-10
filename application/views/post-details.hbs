@@ -1,15 +1,16 @@
 <div id="post-details-view" class="image-post-container">
   <h1 class="title">{{currentPost.title}}</h1>
+  <p class="post-author">by {{currentPost.username}}</p>
   <div class="image-container">
     <img class="posted-image" alt="Missing" src="{{currentPost.photopath}}" />
   </div>
   <div class="below-image">
     <div class="post-authorship-info">
       <p class="post-date">{{currentPost.created}}</p>
-      <p class="post-author">{{currentPost.username}}</p>
     </div>
     <p class="post-description">{{currentPost.description}}</p>
     <div id="comments-section">
+      <p id="comments-header">Comments</p>
       <div id="comments-container">
         {{#each currentPost.comments}}
         {{> comment}}
@@ -22,3 +23,4 @@
     </div>
   </div>
 </div>
+<script defer src="/public/js/commenting.js"></script>
