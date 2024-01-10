@@ -6,7 +6,7 @@ Some of these requirements can be verified as the user types and some can be ver
 If the data is invalid the form SHOULD NOT BE submitted. If the data is valid, simply let the page refresh or show a message saying the form was submitted.
 **/
 
-// Potentioal improvements: 
+// Potential improvements: 
 // - Separate error handling to separate functions. 
 // - Use an array to store/iterate through validation functions and/or error messages.
 

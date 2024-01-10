@@ -1,4 +1,4 @@
-// from Sample Solution video:
+// see Sample Solution video:
 function fadeOut(event) {
     const timeToFade = 500;
     let targetElement = event.currentTarget;
