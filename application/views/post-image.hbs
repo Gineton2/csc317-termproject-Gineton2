@@ -9,6 +9,7 @@
     ▪ Must ask user to accept Acceptable Use Policy for uploading images. 
     ▪ Must ask user to submit image post via a button.
 -->
+
 <div class="container">
   <h1 class="title">Post an Image</h1>
   <form
@@ -51,6 +52,7 @@
       type="checkbox"
       id="use-policy-check"
       name="use-policy-check"
+      value="checked"
       required
     />
 
@@ -89,7 +91,7 @@
     .then((data) => {
       let dataAsObject = data.data;
       console.log(dataAsObject);
-      //alert(dataAsObject.message);
+      alert(dataAsObject.message);
       location.replace(dataAsObject.redirect);
     })
     .catch((err) => {

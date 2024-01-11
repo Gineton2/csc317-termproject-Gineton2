@@ -1,6 +1,6 @@
 const {body, validationResult, query} = require('express-validator');
-const UserError = require('../helpers/error/UserError');
 const validationMiddleware = {};
+const path = require('path');
 
 validationMiddleware.validateEmail = [
     body('email')
@@ -53,35 +53,49 @@ validationMiddleware.validateRegistration = [
     ...validationMiddleware.validateEmail,
     ...validationMiddleware.validateRegistrationUsername,
     ...validationMiddleware.validateRegistrationPassword,
-    ...validationMiddleware.validateRegistrationAgeCheck
+    ...validationMiddleware.validateRegistrationAgeCheck,
+    ...validationMiddleware.validateRegistrationTOSCheck
 ];
 
-validationMiddleware.validatePost = [
+validationMiddleware.validatePostTitle = [
     body('title')
-        .trim()
-        .exists()
-        .notEmpty()
-            .withMessage('Title is required.')
-        .isLength({min: 1, max: 300})
-            .withMessage('Title must be between 1 and 300 characters long.'),
-    
-    // shall a description be required to post?
-    body('description')
-        .exists()
-            .withMessage('Description is required.'),
+    .trim()
+    .exists()
+    .notEmpty()
+        .withMessage('Title is required.')
+    .isLength({min: 1, max: 50})
+        .withMessage('Title must be between 1 and 50 characters long.'),
+// shall a description be required to post?
+body('description')
+    .exists()
+        .withMessage('Description is required.'),
+];
 
+validationMiddleware.validatePostImage = [
     body('imageUpload')
         .custom((value, {req}) => {
             if(!req.file){
-                throw new Error('Image is required.');
+                return false;
             }
             const fileExt = path.extname(req.file.originalname).toLowerCase();
             const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
 
-            if (!validExtensions.includes(fileExt)){
-                throw new Error('Image must be a valid image file type: .jpg, .jpeg, .png, .gif');
-            }
+            return validExtensions.includes(fileExt);
         })
+            .withMessage('Image must be a valid image file type: .jpg, .jpeg, .png, .gif')
+]
+
+validationMiddleware.validateUsePolicyCheck = [
+    body('use-policy-check')
+    .exists()
+    .equals("checked")
+        .withMessage('You must agree to the Use Policy.')
+];
+
+validationMiddleware.validatePost = [
+    ...validationMiddleware.validatePostTitle,
+    ...validationMiddleware.validatePostImage,
+    ...validationMiddleware.validateUsePolicyCheck
 ];
 
 validationMiddleware.validateSearch = [
@@ -89,8 +103,8 @@ validationMiddleware.validateSearch = [
         .trim()
         .exists()
         .withMessage('Search term is required.')
-        .isLength({min: 1, max : 300})
-            .withMessage('Search term must have between one and 300 characters.')
+        .isLength({min: 1, max : 80})
+            .withMessage('Search term must have between one and 80 characters.')
 ];
 
 validationMiddleware.validateLogin = [
@@ -111,13 +125,16 @@ validationMiddleware.validateComment = [
         .matches(/^[a-zA-Z0-9\s\.\,\!\?]+$/)
             .withMessage('Comment may only contain letters, numbers, spaces, and punctuation.')
 ];
+// TODO: Currently not functional. Flash messages are not being displayed consistently
 validationMiddleware.returnValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        errors.array().forEach(error => {
-            req.flash('error', error.msg)
-        });
-    } else {
+        console.log(errors);
+        errors.array().forEach(error => req.flash('error', error.msg));
+        const errorMessages = errors.array().map(error => `${error.param}: ${error.msg}`);
+        return res.status(422).json({ errors: errorMessages });
+    }
+    else {
         next();
     }
 };
