@@ -14,9 +14,9 @@ function displayWarningMessage(warning) {
 
 async function getConnection() {
   return await mysql.createConnection({
-    host: "localhost",
-    user: "root", //Your DB username
-    password: "", //Your DB password
+    host: db.host,
+    user: db.user,
+    password: db.password,
     multipleStatements: true,
   });
 }
