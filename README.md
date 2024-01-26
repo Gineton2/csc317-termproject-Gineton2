@@ -13,15 +13,17 @@ Please follow the instructions below and fill in the information requested when 
 | Student Name  | Gineton Alencar|
 | Student ID    | 920098605      |
 | Student Email | galencar@mail.sfsu.edu |
+| Personal Email| gineton.alencar@gmail.com |
 
 Video demonstration [YouTube link](https://youtu.be/cPMZJJpXf1Q).
 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. Navigate to `application` directory in the terminal.
+2. Run `npm install` to install all dependencies (requires Node.js, npm).
+3. Run either `npm proj-init` (database structure export) or `npm proj-init-with-data` (database structure & data export) to initialize the database.
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. Navigate to `application` directory in the terminal.
+2. Run `npm start` to start the server. Alternatively, run `nodemon` if available.

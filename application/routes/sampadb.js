@@ -29,14 +29,7 @@ router.get('/getAllPostsP', (req, res, next) => { // P for promise
         .then(([results, fields]) => {
             console.log(results);
             res.send(results);
-            // to use multiple `.then`'s, a promise must be returned
-            // return db.query("SELECT * FROM posts WHERE id = 2")
         })
-        // example of a chained `.then`:
-        // .then(([results, fields]) => {
-        //     console.log(results); 
-        //     res.send(results);
-        // })
         .catch((err) => {
             next(err);
         })
@@ -47,10 +40,6 @@ router.post('/createUser', (req, res, next) => {
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
-
-    // validate data; if bad send response
-    // res.redirect('/registration');
-
     let baseSQL = 'INSERT INTO users (username, email, password, created) VALUES (?, ?, ?, now())';
 
     db.query(baseSQL, [username, email, password]).then(([results, fields]) => {

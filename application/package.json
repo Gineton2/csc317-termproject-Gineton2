@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "builddb": "node ./bin/dbloader",
-    "grade": "npm i && node ./bin/dbloader  && nodemon ./bin/www"
+    "builddb": "node ./bin/dbloader.js",
+    "grade": "npm i && node ./bin/dbloader  && nodemon ./bin/www",
+    "proj-init": "./bin/proj-init.js",
+    "proj-init-with-data": ".bin/proj-init-with-data.js"
   },
   "dependencies": {
     "ajax": "^0.0.4",
