@@ -1,18 +1,17 @@
 :root {
   /* colors */
-  /* https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51 */
-  --color-deep-navy: #264653;
-  --color-medium-teal: #2a9d8f;
-  --color-mild-yellow: #e9c46a;
-  --color-creamsicle-orange: #f4a261;
-  --color-deep-orange: #e76f51;
+  /* https://colorhunt.co/palette/00425a1f8a70bfdb38fc7300 */
+  /* --color-peacock-blue: #00425a;
+  --color-medium-teal: #1f8a70;
+  --color-light-green: #bfdb38;
+  --color-vibrant-orange: #fc7300; */
 
   /* color var definitions */
-  --color-alpha: #264653 /* var(--color-deep-navy) */;
-  --color-beta: #2a9d8f /* var(--color-medium-teal) */;
-  --color-gamma: #f4a261 /* var(--color-creamsicle-orange) */;
-  --color-delta: #e9c46a /* var(--color-mild-yellow) */;
-  --color-epsilon: #e76f51 /* var(--color-deep-orange) */;
+  --color-alpha: #00425a /* var(--color-deep-navy) */;
+  --color-beta: #1f8a70 /* var(--color-medium-teal) */;
+  --color-gamma: #fc7300 /* var(--color-creamsicle-orange) */;
+  --color-delta: #bfdb38 /* var(--color-mild-yellow) */;
+  --color-epsilon: #fc7300 /* var(--color-deep-orange) */;
 
   /* alternate color palletes */
   /* https://colorhunt.co/palette/1eb2a6d4f8e8ffa34df67575 */
@@ -25,11 +24,13 @@
   --color-dark-teal-green: #007965;
   --color-vibrant-orange: #f58634;
   --color-vibrant-yellow: #ffcc29; */
-  /* https://colorhunt.co/palette/00425a1f8a70bfdb38fc7300 */
-  /* --color-peacock-blue: #00425a;
-  --color-medium-teal: #1f8a70;
-  --color-light-green: #bfdb38;
-  --color-vibrant-orange: #fc7300; */
+
+    /* https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51 */
+    /* --color-deep-navy: #264653;
+    --color-medium-teal: #2a9d8f;
+    --color-mild-yellow: #e9c46a;
+    --color-creamsicle-orange: #f4a261;
+    --color-deep-orange: #e76f51; */
 }
 
 * {
@@ -96,13 +97,15 @@ input[type="button"]:hover {
 
 a {
   color: var(--color-delta);
+  text-decoration: none;
+  text-decoration-line: none;
 }
 a:hover {
   color: var(--color-epsilon);
 }
 
 .below-image {
-  font-size: calc(0.8rem + 0.2vw);
+  font-size: calc(0.8rem + 0.1vw);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -127,7 +130,7 @@ a:hover {
 .post-author,
 .post-date {
   margin: 0.5rem 0 0.5rem 0;
-  font-size: calc(1rem + 0.2vw);
+  /* font-size: calc(1rem + 0.2vw); */
   font-weight: 600;
 }
 
@@ -144,7 +147,9 @@ a:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: auto;
+  text-decoration: none;
 }
+
 
 #flash-message {
   position: fixed;
@@ -298,6 +303,10 @@ footer a {
   font-size: calc(1rem + 0.1vw);
 }
 
+#comments-container {
+  margin-left: .5rem;
+
+}
 
 #items-count {
   font-family: "Nunito", sans-serif;
