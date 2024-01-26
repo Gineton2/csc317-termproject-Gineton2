@@ -1,14 +1,15 @@
 <div id="post-{{id}}" class="image-post-container">
-  <h1 class="title">{{title}}</h1>
-  <div class="image-container">
-  <img class="posted-image" alt="Missing" src="{{thumbnail}}" />
-  </div>
+  <a href="/post-details/{{id}}">
+    <h1 class="title">{{title}}</h1>
+    <div class="image-container">
+    <img class="posted-image" alt="Missing" src="{{thumbnail}}" />
+    </div>
+  </a>
   <div class="below-image">
     <div class="post-authorship-info">
         <p class="post-date">{{created}}</p>
         <p class="post-author">{{username}}</p>
     </div>
     <p class="post-description">{{description}}</p>
-    <a href="/post-details/{{id}}" class="post-details-button">View Post</a>
   </div>
 </div>
