@@ -31,7 +31,7 @@ router.post('/createPost', uploader.single("imageUpload"), validatePost, returnV
     let fk_userId = req.session.userId;
 
     sharp(imageUploaded)
-        .resize(200)
+        .resize(300)
         .toFile(destinationOfThumbnail)
         .then(() => {
             return PostModel.create(title, description, imageUploaded, destinationOfThumbnail, fk_userId);
