@@ -67,9 +67,6 @@ router.post('/register', validateRegistration, returnValidationErrors, (req, res
 router.post('/log-in', validateLogin, returnValidationErrors, (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
-
-  /* TODO: Server-side validation */
-
   UserModel.authenticate(username, password)
     .then((loggedUserId) => {
       if (loggedUserId > 0) {

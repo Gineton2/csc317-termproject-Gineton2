@@ -3,8 +3,10 @@ function addMessage(data) {
     let template = document.createElement('template');
     template.innerHTML =
         `<div class="comment" id="comment-id-${data.commentId}">
-            <p class="comment-author">${data.username}</p>
-            <p class="comment-text">${data.comment}</p>
+        <p class="comment-first-line">
+            <span class="comment-author">${data.username}</span>
+            <span class="comment-text">${data.comment}</span>
+            </p>
             <p class="comment-date">${new Date().toLocaleString()}</p>
         </div>`;
     document.getElementById("comments-container").appendChild(template.content.firstChild);
@@ -36,7 +38,7 @@ document.getElementById("comment-add-button").onclick = (event) => {
                 document.getElementById("comment-add-textarea").value = '';
             } else {
                 addFlashFromFrontEnd(data.message, data.status);
-            } 
+            }
         })
         .catch(err => console.log(err));
 }

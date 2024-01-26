@@ -7,7 +7,7 @@ const postsMiddleware = {};
 
 postsMiddleware.getRecentPosts = async function(req, res, next) {
     try {
-        let results = await getNRecentPosts(8);
+        let results = await getNRecentPosts(10);
         res.locals.results = results;
         if (results.length == 0) {
             req.flash('error', 'No posts have been created.');

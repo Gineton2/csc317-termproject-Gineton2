@@ -39,8 +39,7 @@ router.post('/createPost', uploader.single("imageUpload"), validatePost, returnV
         .then((postWasCreated) => {
             if (postWasCreated) {
                 req.flash('success', 'Your post was created successfully.');
-                // res.redirect('/'); //TODO: (optional) route to individually created post
-                res.json({ status: "OK", "redirect": "/" });
+                res.redirect('/');
             } else {
                 // throw new PostError(
                 //     "Post could not be created",
@@ -48,7 +47,7 @@ router.post('/createPost', uploader.single("imageUpload"), validatePost, returnV
                 //     200
                 // );
                 req.flash('error', 'Your post could not be created.');
-                res.json({ status: "ERROR", "redirect": "/post-image" });
+                res.redirect('/post-image');
             }
         })
         .catch((err) => {

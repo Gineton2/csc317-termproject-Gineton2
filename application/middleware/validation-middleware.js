@@ -125,14 +125,14 @@ validationMiddleware.validateComment = [
         .matches(/^[a-zA-Z0-9\s\.\,\!\?]+$/)
             .withMessage('Comment may only contain letters, numbers, spaces, and punctuation.')
 ];
-// TODO: Currently not functional. Flash messages are not being displayed consistently
+
 validationMiddleware.returnValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         console.log(errors);
-        errors.array().forEach(error => req.flash('error', error.msg));
-        const errorMessages = errors.array().map(error => `${error.param}: ${error.msg}`);
-        return res.status(422).json({ errors: errorMessages });
+        let errorMessage = errors.array().map(error => error.msg).join('\n');
+        req.flash('error', errorMessage);
+        res.redirect('back');
     }
     else {
         next();
